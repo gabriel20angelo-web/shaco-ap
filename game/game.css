@@ -401,6 +401,64 @@ body.flash-red { animation: flash-red 0.5s; }
    RESPONSIVE
    ========================================================== */
 
+.btn-hud.on {
+  border-color: var(--shaco-green);
+  color: var(--shaco-green);
+  box-shadow: 0 0 15px var(--shaco-green);
+  animation: btn-hud-pulse 1.5s infinite;
+}
+
+@keyframes btn-hud-pulse {
+  0%, 100% { box-shadow: 0 0 15px var(--shaco-green); }
+  50% { box-shadow: 0 0 25px var(--shaco-green), 0 0 45px var(--shaco-purple); }
+}
+
+.mode-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 0.8rem 0;
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  color: var(--shaco-acid);
+  cursor: pointer;
+  padding: 0.5rem 0.8rem;
+  border: 2px dashed var(--shaco-purple);
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.mode-toggle:hover {
+  background: rgba(160, 32, 240, 0.12);
+  border-color: var(--shaco-green);
+}
+
+.mode-toggle input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 2px solid var(--shaco-purple);
+  border-radius: 4px;
+  cursor: pointer;
+  background: #000;
+  display: grid;
+  place-items: center;
+}
+
+.mode-toggle input:checked {
+  background: var(--shaco-green);
+  border-color: var(--shaco-green);
+  box-shadow: 0 0 10px var(--shaco-green);
+}
+
+.mode-toggle input:checked::after {
+  content: '🃏';
+  font-size: 0.8rem;
+}
+
 @media (max-width: 640px) {
   .hud-stats { font-size: 1rem; gap: 0.8rem; }
   .hud-stats b { font-size: 1.2rem; }

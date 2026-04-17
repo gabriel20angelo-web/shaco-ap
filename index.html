@@ -23,6 +23,7 @@
       <p class="hero__sub">
         fragmentos desordenados sobre um palhaço que <em>devia estar numa caixinha</em>
       </p>
+      <canvas id="hero-canvas" width="340" height="340" aria-label="shaco 3D"></canvas>
       <div class="hero__cta-group">
         <a href="./game/" class="btn-demon">🎮 ache o shaco (3D)</a>
         <button id="shuffle" class="btn-ghost">🎲 embaralhar tudo</button>
@@ -30,6 +31,8 @@
       </div>
       <p class="hero__scroll">▼ role. alguma coisa te pega embaixo ▼</p>
     </header>
+
+    <button id="sound-toggle" class="sound-toggle" aria-label="ligar/desligar som" title="ligar som">🔇</button>
 
     <div id="chaos" class="chaos-grid" aria-live="polite"></div>
     <p class="box-output" aria-live="polite"></p>
@@ -41,9 +44,15 @@
     </footer>
   </main>
 
+  <script src="./audio.js"></script>
+  <script src="./particles.js"></script>
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js" defer></script>
+  <script src="./hero-shaco.js" defer></script>
+
   <script>
     const rand = (arr) => arr[Math.floor(Math.random() * arr.length)];
     const randInt = (a, b) => Math.floor(Math.random() * (b - a + 1)) + a;
+    const A = () => window.ShacoAudio;
 
     // ============ DADOS ============
 
@@ -202,6 +211,23 @@
       '📉 REPORTA VOCÊ MESMO', '✌ ELO FICA', '🎯 NÃO ERRA UM', '🚨 HOTFIX NECESSÁRIO'
     ];
 
+    const NAME_PREFIX = ['xXx', 'Dr', 'Mr', 'Lord', 'Pr', 'DJ', 'ZE', 'T1', 'MID', '', '', ''];
+    const NAME_CORE = ['Pinkward', 'ShacoBr', 'Tchaco', 'BoboDaCorte', 'ClonadoR', 'CaixinhaKid', 'Jester', 'MimicMan', 'HaHaHa', 'Trolleiro', 'SemFarm', 'FogoCruz', 'BozoPrime', 'Stalker', 'Robator', 'Coringa', 'GankerZero', 'HA', 'Pirralho', 'MainDesdeS3'];
+    const NAME_SUFFIX = ['BR', 'JG', 'AP', 'OTP', '200iq', 'SAD', '47', 'top1', 'OP', 'SZN', 'main', '_', 'x', 'TilT', 'AFK', ''];
+
+    const LEADERBOARD = [
+      { nick: 'Pinkward', rank: 'CHALLENGER', lp: 1337, winrate: '47%', games: 2148 },
+      { nick: 'BoboDoCaos_BR', rank: 'GRANDMASTER', lp: 892, winrate: '52%', games: 1502 },
+      { nick: 'Dr_Tchaco', rank: 'MASTER', lp: 641, winrate: '49%', games: 982 },
+      { nick: 'CaixinhaCarry', rank: 'MASTER', lp: 520, winrate: '58%', games: 721 },
+      { nick: 'HAHAHA_JG', rank: 'DIAMANTE I', lp: 98, winrate: '44%', games: 1203 },
+      { nick: 'MimicMan', rank: 'DIAMANTE II', lp: 72, winrate: '51%', games: 634 },
+      { nick: 'xXx_Coringa', rank: 'DIAMANTE III', lp: 12, winrate: '39%', games: 2891 },
+      { nick: 'SeuEx_AP', rank: 'ESMERALDA I', lp: 99, winrate: '60%', games: 213 },
+      { nick: 'FerroComGlória', rank: 'FERRO IV', lp: 0, winrate: '23%', games: 4120 },
+      { nick: 'EuMesmo', rank: 'BRONZE III', lp: 47, winrate: '48%', games: 88 }
+    ];
+
     // ============ BUILD CHAOS GRID ============
 
     function shuffle(arr) {
@@ -232,7 +258,16 @@
       items.push({ type: 'carta' });
       items.push({ type: 'slot' });
       items.push({ type: 'danger' });
+      items.push({ type: 'nameGen' });
+      items.push({ type: 'leaderboard' });
       return items;
+    }
+
+    function generateShacoName() {
+      const pre = rand(NAME_PREFIX);
+      const core = rand(NAME_CORE);
+      const suf = rand(NAME_SUFFIX);
+      return (pre + core + suf).replace(/^_+|_+$/g, '');
     }
 
     function renderItem(item) {
@@ -307,6 +342,34 @@
             </div>`;
           return c;
         }
+        case 'nameGen': {
+          c = mkCard('nameGen', 'm');
+          c.innerHTML = `
+            <div class="card-inner">
+              <p class="namegen-label">seu nome de main shaco:</p>
+              <p id="namegen-out" class="namegen-out">${generateShacoName()}</p>
+              <button id="namegen-btn" class="btn-demon">🎲 outro</button>
+            </div>`;
+          return c;
+        }
+        case 'leaderboard': {
+          c = mkCard('leaderboard', 'l');
+          const rows = LEADERBOARD.map((e, i) => `
+            <tr>
+              <td>${i + 1}.</td>
+              <td class="lb-nick">${e.nick}</td>
+              <td class="lb-rank">${e.rank}</td>
+              <td>${e.lp} LP</td>
+              <td class="lb-wr">${e.winrate}</td>
+            </tr>`).join('');
+          c.innerHTML = `
+            <div class="card-inner">
+              <p class="lb-title">🏆 top 10 main shaco · servidor br</p>
+              <table class="leaderboard">${rows}</table>
+              <p class="lb-foot">dados 100% fabricados · atualizado em <em>nunca</em></p>
+            </div>`;
+          return c;
+        }
       }
     }
 
@@ -337,6 +400,9 @@
       if (btn.dataset.effect === 'shake') {
         document.body.classList.add('shaken');
         setTimeout(() => document.body.classList.remove('shaken'), 500);
+        A()?.explode();
+      } else {
+        A()?.boxOpen();
       }
       setTimeout(() => {
         btn.classList.remove('opened');
@@ -347,6 +413,7 @@
     function puxarCarta() {
       const out = document.getElementById('carta-output');
       if (!out) return;
+      A()?.card();
       const n = (parseInt(out.dataset.count || '0', 10) + 1);
       out.dataset.count = n;
       out.innerHTML = '';
@@ -360,6 +427,7 @@
     function spinSlot() {
       const result = document.getElementById('slot-result');
       if (!result) return;
+      A()?.slot();
       result.classList.remove('show');
       result.textContent = '';
       [1, 2, 3].forEach((i) => {
@@ -378,6 +446,7 @@
               setTimeout(() => {
                 result.textContent = rand(SLOT_REACTIONS);
                 result.classList.add('show');
+                A()?.crit();
               }, 200);
             }
           }
@@ -396,19 +465,25 @@
         case 'deceive':
           document.body.classList.add('deceive');
           setTimeout(() => document.body.classList.remove('deceive'), 2000);
+          A()?.deceive();
           if (btn) cooldown(btn, 2500);
           break;
         case 'backstab':
           document.body.classList.add('backstab');
           setTimeout(() => document.body.classList.remove('backstab'), 1400);
+          A()?.backstab();
           if (btn) cooldown(btn, 1800);
           break;
         case 'hallucinate':
           spawnClones('https://media.tenor.com/yeR2U7TIIvMAAAAM/shaco-q-league-of-legends.gif', 6);
+          window.HeroShaco?.spawnClones(4);
+          A()?.laugh();
           if (btn) cooldown(btn, 4000);
           break;
         case 'jest':
           rainHA(40, 60);
+          A()?.laugh();
+          setTimeout(() => A()?.laugh(), 800);
           if (btn) cooldown(btn, 3000);
           break;
       }
@@ -459,12 +534,39 @@
       if (e.target.closest('#puxar-carta')) { puxarCarta(); return; }
       if (e.target.closest('#spin-btn')) { spinSlot(); return; }
       if (e.target.closest('#nao-clique')) { naoCliqueHandler(); return; }
-      if (e.target.closest('#shuffle')) { renderChaos(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+      if (e.target.closest('#shuffle')) {
+        A()?.card();
+        renderChaos();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
       if (e.target.closest('#invocar')) {
         document.body.classList.add('shaken');
         setTimeout(() => document.body.classList.remove('shaken'), 500);
         spawnClones('https://media.tenor.com/X95_fOkzFOIAAAAM/shaco-honsementioned.gif', 4);
+        window.HeroShaco?.spawnClones(5);
         rainHA(20, 80);
+        A()?.laugh();
+        return;
+      }
+      if (e.target.closest('#namegen-btn')) {
+        const out = document.getElementById('namegen-out');
+        if (out) {
+          out.style.animation = 'none';
+          void out.offsetWidth;
+          out.style.animation = 'pop-text 0.5s';
+          out.textContent = generateShacoName();
+          A()?.card();
+        }
+        return;
+      }
+      if (e.target.closest('#sound-toggle')) {
+        const btn = document.getElementById('sound-toggle');
+        const on = A()?.toggle();
+        btn.textContent = on ? '🔊' : '🔇';
+        btn.title = on ? 'desligar som' : 'ligar som';
+        btn.classList.toggle('on', !!on);
+        if (on) A()?.laugh();
         return;
       }
 
@@ -505,6 +607,8 @@
       rainHA(50, 40);
       document.body.classList.add('shaken');
       setTimeout(() => document.body.classList.remove('shaken'), 500);
+      A()?.explode();
+      A()?.laugh();
       if (clickCount === 1 || clickCount % 3 === 0) {
         setTimeout(() => alert(rand(naoCliqueMsgs)), 400);
       }

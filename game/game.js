@@ -13,6 +13,7 @@ const COLORS = {
 
 const rand = (arr) => arr[Math.floor(Math.random() * arr.length)];
 const randRange = (a, b) => Math.random() * (b - a) + a;
+const A = () => window.ShacoAudio;
 
 /* ===== Cena ===== */
 
@@ -330,6 +331,8 @@ let score = 0;
 let missCount = 0;
 let gameActive = false;
 let clickBusy = false;
+let infiniteMode = false;
+const INF_MAX_MISS = 3;
 
 /* ===== Spawn ===== */
 
@@ -429,17 +432,20 @@ function resolveHit(entity) {
       updateHUD();
       fadeOutAndTrigger(entity.group, () => {
         showOverlayAtrasDeVoce();
+        spawnConfetti(entity.group.position);
         setTimeout(() => {
           clickBusy = false;
           nextRound();
         }, 2200);
       });
       flashBody('flash-green');
+      A()?.atrasDeVoce();
       break;
     case 'clone':
       showMessage(rand(['era clone!', 'clonou, não contou', 'o real tá em outro lugar', 'cópia xerox']), 'clone');
       puffRemove(entity);
       registerMiss();
+      A()?.miss();
       break;
     case 'box':
       showMessage(rand(['BOOM · mimic', '💥 caiu na armadilha', 'caixinha explodiu na sua cara', 'tarde demais']), 'box');
@@ -447,19 +453,60 @@ function resolveHit(entity) {
       shakeScreen();
       registerMiss();
       flashBody('flash-red');
+      A()?.explode();
       break;
     case 'exploded':
       showMessage(rand(['esse já tava morto', 'zerou', 'fragmento sem dono', 'não conta']), 'exp');
       puffRemove(entity);
       registerMiss();
+      A()?.miss();
       break;
+  }
+}
+
+/* Confetti 3D de caixinhas ao acertar */
+function spawnConfetti(origin) {
+  for (let i = 0; i < 12; i++) {
+    const mini = createBox();
+    mini.scale.setScalar(0.25);
+    mini.position.copy(origin);
+    const vx = (Math.random() - 0.5) * 0.4;
+    const vy = Math.random() * 0.35 + 0.15;
+    const vz = (Math.random() - 0.5) * 0.4;
+    mini.userData.vx = vx;
+    mini.userData.vy = vy;
+    mini.userData.vz = vz;
+    mini.userData.rotSpd = (Math.random() - 0.5) * 0.25;
+    mini.userData.life = 1;
+    scene.add(mini);
+    const start = performance.now();
+    (function step() {
+      const age = (performance.now() - start) / 2000;
+      if (age >= 1) { scene.remove(mini); return; }
+      mini.position.x += mini.userData.vx;
+      mini.position.y += mini.userData.vy;
+      mini.position.z += mini.userData.vz;
+      mini.userData.vy -= 0.012;
+      mini.rotation.x += mini.userData.rotSpd;
+      mini.rotation.y += mini.userData.rotSpd * 0.8;
+      mini.traverse(c => {
+        if (c.isMesh) {
+          if (!c.material.transparent) { c.material = c.material.clone(); c.material.transparent = true; }
+          c.material.opacity = 1 - age;
+        }
+      });
+      requestAnimationFrame(step);
+    })();
   }
 }
 
 function registerMiss() {
   missCount++;
   updateHUD();
-  setTimeout(() => clickBusy = false, 400);
+  setTimeout(() => {
+    clickBusy = false;
+    if (infiniteMode && missCount >= INF_MAX_MISS) endGame();
+  }, 400);
 }
 
 function puffRemove(entity) {
@@ -570,7 +617,11 @@ function updateHUD() {
 
 function nextRound() {
   round++;
-  if (round > 10) {
+  if (infiniteMode) {
+    if (missCount >= INF_MAX_MISS) { endGame(); return; }
+    updateHUD();
+    spawnRound();
+  } else if (round > 10) {
     endGame();
   } else {
     updateHUD();
@@ -584,6 +635,8 @@ function startGame() {
   missCount = 0;
   clickBusy = false;
   gameActive = true;
+  const inf = document.getElementById('infinite-mode');
+  infiniteMode = !!(inf && inf.checked);
   entities.forEach(e => scene.remove(e.group));
   entities = [];
   updateHUD();
@@ -601,12 +654,25 @@ const VERDICTS = [
   { min: 0, title: 'VOCÊ VIROU PIADA', quip: 'a piada era com você. ainda é.' }
 ];
 
+const INF_VERDICTS = [
+  { min: 50, title: 'LENDA URBANA', quip: 'shaco main kanzi te seguiu de volta.' },
+  { min: 25, title: 'CAÇADOR PROFISSIONAL', quip: 'o ward rosa ficou com medo de você.' },
+  { min: 15, title: 'TÁ AFIADO', quip: 'o adc inimigo agradece. ele já se acostumou.' },
+  { min: 8, title: 'RAZOÁVEL', quip: 'um Shaco por aí te deve uma.' },
+  { min: 3, title: 'QUASE LÁ', quip: 'a próxima é sua. (não é.)' },
+  { min: 0, title: 'PIROU NA CAIXINHA', quip: 'ele clonou, você clicou. repete em loop.' }
+];
+
 function endGame() {
   gameActive = false;
   const modal = document.getElementById('end-modal');
-  const v = VERDICTS.find(v => score >= v.min);
+  const list = infiniteMode ? INF_VERDICTS : VERDICTS;
+  const v = list.find(v => score >= v.min);
   modal.querySelector('.verdict').textContent = v.title;
-  modal.querySelector('.final-score').textContent = `${score}/10 shacos encontrados · ${missCount} erros`;
+  const maxTxt = infiniteMode ? 'achou · 3 erros = fim' : '/10 shacos encontrados';
+  modal.querySelector('.final-score').textContent = infiniteMode
+    ? `${score} achou · ${missCount} erros (limite ${INF_MAX_MISS})`
+    : `${score}/10 shacos encontrados · ${missCount} erros`;
   modal.querySelector('.final-quip').textContent = v.quip;
   modal.classList.remove('modal-hidden');
   entities.forEach(e => scene.remove(e.group));
@@ -658,6 +724,15 @@ document.getElementById('start-btn').addEventListener('click', startGame);
 document.getElementById('play-again').addEventListener('click', startGame);
 document.getElementById('restart').addEventListener('click', () => {
   startGame();
+});
+
+document.getElementById('sound-toggle')?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const btn = e.currentTarget;
+  const on = A()?.toggle();
+  btn.textContent = on ? '🔊' : '🔇';
+  btn.classList.toggle('on', !!on);
+  if (on) A()?.laugh();
 });
 
 animate();

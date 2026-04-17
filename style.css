@@ -837,6 +837,172 @@ footer a:hover { color: var(--shaco-green); }
 }
 
 /* ==========================================================
+   HERO CANVAS 3D
+   ========================================================== */
+
+#hero-canvas {
+  width: clamp(220px, 40vw, 360px);
+  height: clamp(220px, 40vw, 360px);
+  margin: 1rem auto 1.5rem;
+  display: block;
+  cursor: pointer;
+  filter: drop-shadow(0 0 30px rgba(160, 32, 240, 0.5)) drop-shadow(0 0 60px rgba(57, 255, 20, 0.2));
+  transition: filter 0.3s, transform 0.3s;
+}
+
+#hero-canvas:hover {
+  filter: drop-shadow(0 0 40px var(--shaco-green)) drop-shadow(0 0 80px var(--shaco-purple));
+  transform: scale(1.03);
+}
+
+/* ==========================================================
+   SOUND TOGGLE
+   ========================================================== */
+
+.sound-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 200;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.85);
+  border: 2px solid var(--shaco-purple);
+  color: var(--shaco-acid);
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 0 15px rgba(160, 32, 240, 0.5);
+}
+
+.sound-toggle:hover {
+  transform: scale(1.1) rotate(15deg);
+  box-shadow: 0 0 25px var(--shaco-purple);
+}
+
+.sound-toggle.on {
+  border-color: var(--shaco-green);
+  box-shadow: 0 0 20px var(--shaco-green);
+  animation: sound-pulse 1.5s infinite;
+}
+
+@keyframes sound-pulse {
+  0%, 100% { box-shadow: 0 0 20px var(--shaco-green); }
+  50% { box-shadow: 0 0 35px var(--shaco-green), 0 0 60px var(--shaco-purple); }
+}
+
+/* ==========================================================
+   CARD: nameGen
+   ========================================================== */
+
+.card[data-type="nameGen"] {
+  background: linear-gradient(135deg, rgba(160, 32, 240, 0.2), rgba(0, 0, 0, 0.6));
+  border-color: var(--shaco-acid);
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.namegen-label {
+  font-family: 'VT323', monospace;
+  color: var(--shaco-acid);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+}
+
+.namegen-out {
+  font-family: 'Rubik Mono One', monospace;
+  font-size: clamp(1.1rem, 2.8vw, 1.7rem);
+  color: var(--shaco-green);
+  text-shadow: 0 0 15px var(--shaco-green);
+  letter-spacing: 1px;
+  margin: 0.4rem 0 0.8rem;
+  word-break: break-all;
+  max-width: 100%;
+  text-align: center;
+}
+
+/* ==========================================================
+   CARD: leaderboard
+   ========================================================== */
+
+.card[data-type="leaderboard"] {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.75), rgba(26, 0, 48, 0.6));
+  border-color: var(--shaco-green);
+  flex-direction: column;
+  padding: 0.8rem;
+  align-items: stretch;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.lb-title {
+  font-family: 'Creepster', cursive;
+  color: var(--shaco-acid);
+  font-size: 1.15rem;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px var(--shaco-purple);
+}
+
+.leaderboard {
+  width: 100%;
+  font-family: 'VT323', monospace;
+  font-size: 0.9rem;
+  border-collapse: collapse;
+}
+
+.leaderboard tr {
+  border-bottom: 1px dashed rgba(160, 32, 240, 0.3);
+}
+
+.leaderboard tr:last-child { border-bottom: none; }
+
+.leaderboard tr:nth-child(1) { background: rgba(202, 255, 0, 0.1); }
+.leaderboard tr:nth-child(2) { background: rgba(202, 255, 0, 0.05); }
+
+.leaderboard td {
+  padding: 0.3rem 0.25rem;
+  color: #ddd;
+  white-space: nowrap;
+}
+
+.leaderboard .lb-nick {
+  color: var(--shaco-green);
+  font-weight: bold;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.leaderboard .lb-rank {
+  color: var(--shaco-acid);
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+}
+
+.leaderboard .lb-wr { color: var(--shaco-purple); }
+
+.lb-foot {
+  margin-top: 0.5rem;
+  font-family: 'VT323', monospace;
+  font-size: 0.75rem;
+  color: #888;
+  text-align: center;
+}
+
+.lb-foot em { color: var(--shaco-blood); font-style: normal; }
+
+/* ==========================================================
+   PARTICLES BG (z-index management)
+   ========================================================== */
+
+#particles-bg { opacity: 0.85; }
+
+/* ==========================================================
    RESPONSIVE
    ========================================================== */
 

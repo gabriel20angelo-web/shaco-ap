@@ -19,6 +19,7 @@
       <span>ERROS <b id="miss">0</b></span>
     </div>
     <div class="hud-actions">
+      <button id="sound-toggle" class="btn-hud" aria-label="som">🔇</button>
       <button id="restart" class="btn-hud">↻ reiniciar</button>
       <a href="../" class="btn-hud">← voltar</a>
     </div>
@@ -43,7 +44,11 @@
         <div><strong>👥 clones</strong><small>iguais mas menores/torto</small></div>
         <div><strong>💀 explodido</strong><small>já era. não conta.</small></div>
       </div>
-      <p class="tip">10 rodadas. erro não reinicia — só te envergonha.</p>
+      <label class="mode-toggle">
+        <input type="checkbox" id="infinite-mode" />
+        <span>modo infinito (perde com 3 erros)</span>
+      </label>
+      <p class="tip">10 rodadas no modo normal. erro não reinicia — só te envergonha.</p>
       <button id="start-btn" class="btn-big">COMEÇAR</button>
     </div>
   </div>
@@ -59,6 +64,7 @@
     </div>
   </div>
 
+  <script src="../audio.js"></script>
   <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
   <script src="game.js"></script>
 </body>
