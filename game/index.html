@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ache o Shaco — minigame</title>
+  <meta name="description" content="Minigame 3D: ache o Shaco AP no meio das iscas (clones, caixinhas, shaco explodido)." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='85'%3E🃏%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Rubik+Mono+One&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="game.css" />
+</head>
+<body>
+  <header id="hud">
+    <div class="hud-stats">
+      <span>RODADA <b id="round">1</b>/10</span>
+      <span>ACERTOS <b id="score">0</b></span>
+      <span>ERROS <b id="miss">0</b></span>
+    </div>
+    <div class="hud-actions">
+      <button id="restart" class="btn-hud">↻ reiniciar</button>
+      <a href="../" class="btn-hud">← voltar</a>
+    </div>
+  </header>
+
+  <div id="canvas-wrap" aria-label="cena do jogo"></div>
+
+  <div id="message" aria-live="polite"></div>
+
+  <div id="overlay" class="overlay-hidden">
+    <div class="overlay-text">ATRÁS DE VOCÊ</div>
+    <div class="overlay-sub">+1 ponto · HA HA HA</div>
+  </div>
+
+  <div id="intro-modal" class="modal">
+    <div class="modal-box">
+      <h1>ACHE O <span>SHACO</span></h1>
+      <p class="tag">clique nele antes de virar piada</p>
+      <div class="legend">
+        <div><strong>🃏 shaco real</strong><small>some + "ATRÁS DE VOCÊ"</small></div>
+        <div><strong>🎁 caixinhas</strong><small>explodem. mimic confirmado.</small></div>
+        <div><strong>👥 clones</strong><small>iguais mas menores/torto</small></div>
+        <div><strong>💀 explodido</strong><small>já era. não conta.</small></div>
+      </div>
+      <p class="tip">10 rodadas. erro não reinicia — só te envergonha.</p>
+      <button id="start-btn" class="btn-big">COMEÇAR</button>
+    </div>
+  </div>
+
+  <div id="end-modal" class="modal modal-hidden">
+    <div class="modal-box">
+      <h1>FIM DE <span>JOGO</span></h1>
+      <p class="verdict"></p>
+      <p class="final-score"></p>
+      <p class="final-quip"></p>
+      <button id="play-again" class="btn-big">JOGAR DE NOVO</button>
+      <a href="../" class="btn-ghost">voltar pro site</a>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
