@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SHACO É AP — A piada é com você</title>
-  <meta name="description" content="Site irresponsavel com depoimentos, copypastas, quotes do demonio, poesia de boteco e 20 gifs. Nenhum item aqui e conselho." />
+  <title>SHACO É AP — fragmentos desordenados</title>
+  <meta name="description" content="Site-colagem com 80+ cards caoticos sobre o Shaco AP: piadas, caixinhas, gifs, depoimentos, spells. Embaralha a cada clique." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='85'%3E🃏%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,572 +17,158 @@
   <span class="float-q">?</span>
 
   <main>
-    <!-- =================== HERO =================== -->
-    <section class="hero" id="top">
-      <p class="hero__eyebrow">★ advertência: pode conter piada ruim ★</p>
+    <header class="hero-mini">
+      <p class="hero__eyebrow">★ nenhum conselho aqui é útil ★</p>
       <h1>SHACO É <span>AP</span></h1>
       <p class="hero__sub">
-        Nenhum item deste site é <em>útil</em>. Nenhum conselho é <em>responsável</em>.
-        Nenhum depoimento é <em>verificado</em>. <br />
-        A piada <em>é com você</em>.
+        fragmentos desordenados sobre um palhaço que <em>devia estar numa caixinha</em>
       </p>
       <div class="hero__cta-group">
-        <a href="#falas" class="hero__cta">✦ deixa a dor chegar ✦</a>
-        <button id="invocar" class="btn-ghost">🃏 invocar shaco</button>
+        <button id="shuffle" class="btn-demon">🎲 embaralhar tudo</button>
+        <button id="invocar" class="btn-ghost">🃏 invocar</button>
       </div>
-      <img
-        class="hero__hero-gif"
-        src="https://media.tenor.com/X95_fOkzFOIAAAAM/shaco-honsementioned.gif"
-        alt="Shaco pulando da caixa"
-        loading="eager"
-      />
-      <span class="hero__scroll">▼ tem alguém atrás de você ▼</span>
-    </section>
+      <p class="hero__scroll">▼ role. alguma coisa te pega embaixo ▼</p>
+    </header>
 
-    <!-- =================== FALAS CANON =================== -->
-    <section id="falas">
-      <h2>Falas do <span>demônio</span></h2>
-      <p class="section__kicker">[ canon do jogo. ressignificadas pro seu trauma ]</p>
+    <div id="chaos" class="chaos-grid" aria-live="polite"></div>
+    <p class="box-output" aria-live="polite"></p>
 
-      <ul class="meme-list">
-        <li>
-          <strong>canon ✦ #01</strong>
-          "Que tal um <em>truque de mágica</em>?"
-        </li>
-        <li>
-          <strong>canon ✦ #02</strong>
-          "E para o meu próximo truque, eu farei você <em>desaparecer</em>."
-        </li>
-        <li>
-          <strong>canon ✦ #03</strong>
-          "Por que tão sério?"
-        </li>
-        <li>
-          <strong>canon ✦ #04</strong>
-          "Agora você me vê… agora você não vê."
-        </li>
-        <li>
-          <strong>canon ✦ #05</strong>
-          "Olhe... atrás de você."
-        </li>
-        <li>
-          <strong>canon ✦ #06</strong>
-          "Só mais um pouquinho…"
-        </li>
-        <li>
-          <strong>canon ✦ #07</strong>
-          "Isto vai ser <em>divertido</em>!"
-        </li>
-        <li>
-          <strong>canon ✦ #08</strong>
-          "A piada é com você!" <span class="joke-badge">MAIN</span>
-        </li>
-      </ul>
-
-      <div class="gif-solo">
-        <img src="https://media.tenor.com/BT1t3WFaDSsAAAAM/i-jest-shaco.gif" alt="Shaco pixel art I jest" loading="lazy" />
-      </div>
-    </section>
-
-    <!-- =================== CAIXINHAS =================== -->
-    <section id="caixinhas">
-      <h2>Caixinhas do <span>demônio</span></h2>
-      <p class="section__kicker">[ clique se tiver coragem. algumas são armadilha ]</p>
-
-      <div class="box-grid">
-        <button class="box" data-prize="🎁 +1500 dano psicológico. bem feito." aria-label="caixinha 1">🎁</button>
-        <button class="box" data-prize="💀 parabéns, você morreu. fantasma é o próximo level." data-effect="shake" aria-label="caixinha 2">🎁</button>
-        <button class="box" data-prize="🪦 era mimic. caíste igual todo adc iluminado." aria-label="caixinha 3">🎁</button>
-        <button class="box" data-prize="🧾 drop raro: um boleto. vencido ontem." aria-label="caixinha 4">🎁</button>
-        <button class="box" data-prize="🃏 coringa ativo. +30% de pirar no jogo." aria-label="caixinha 5">🎁</button>
-        <button class="box" data-prize="🐟 peixe morto. shaco ap não farma, pesca." aria-label="caixinha 6">🎁</button>
-        <button class="box" data-prize="🫥 vazio. como seu elo. sinto muito." aria-label="caixinha 7">🎁</button>
-        <button class="box" data-prize="📦 uma caixinha dentro de outra caixinha. 🥴" aria-label="caixinha 8">🎁</button>
-        <button class="box" data-prize="⚠ ISSO ERA UMA ARMADILHA. TARDE DEMAIS." data-effect="shake" aria-label="caixinha 9">🎁</button>
-        <button class="box" data-prize="🗡 backstab. não vi acontecer, mas senti." aria-label="caixinha 10">🎁</button>
-        <button class="box" data-prize="🎭 trocou de main. agora é yasuo. pior ainda." aria-label="caixinha 11">🎁</button>
-        <button class="box" data-prize="✨ +1 ward rosa. use com sabedoria. (não vai usar)" aria-label="caixinha 12">🎁</button>
-      </div>
-
-      <p class="box-output" aria-live="polite"></p>
-    </section>
-
-    <!-- =================== DEPOIMENTOS =================== -->
-    <section id="depoimentos">
-      <h2>Depoimentos <span>reais</span></h2>
-      <p class="section__kicker">[ não são reais. mas também são ]</p>
-
-      <div class="quote">
-        Joguei 200 partidas de Shaco AP esse mês. Minha esposa foi embora, meu cachorro me olha com nojo, o Pinkward me seguiu no Twitter.
-        <strong style="display:block;margin-top:0.5rem;">Liquido positivo.</strong>
-        <cite>— rodrigo, 34, main desde season 4</cite>
-      </div>
-
-      <div class="gif-solo">
-        <img src="https://media.tenor.com/NBLyuTxv0A0AAAAM/shaco-bong.gif" alt="Shaco bobo da corte" loading="lazy" />
-      </div>
-
-      <div class="quote">
-        Perdi 12kg de suor quando escutei <em>HAHAHAHA</em> vindo do ward.
-        <cite>— adc anônimo, elo esmeralda</cite>
-      </div>
-
-      <div class="quote">
-        Falei pro psiquiatra que eu via risadas atrás de mim.
-        Ele disse que era Shaco. Aumentou o Ritalin.
-        <cite>— depoimento de paciente, clínica fictícia</cite>
-      </div>
-
-      <div class="gif-solo">
-        <img src="https://media.tenor.com/Y-fQ11vhaYEAAAAM/shaco-nedenbukadarciddisin.gif" alt="Shaco olhos vermelhos por que tão sério" loading="lazy" />
-      </div>
-
-      <div class="quote">
-        Meu irmão, eu vi o Shaco clonar. Eu vi o Shaco dançar. Eu vi o Shaco mijar de rir no meu cadáver.
-        <strong style="display:block;margin-top:0.5rem;">Hoje eu não jogo mais ranqueada.</strong>
-        <cite>— desabafo fórum br, 2019</cite>
-      </div>
-
-      <div class="quote">
-        Minha ex me abandonou quando soube que eu era main Shaco. Hoje só tenho R1 em soloQ e 47 caixinhas por partida.
-        <strong style="display:block;margin-top:0.5rem;">Valeu a pena.</strong>
-        <cite>— copypasta adaptada</cite>
-      </div>
-    </section>
-
-    <!-- =================== SHACO SYNDROME =================== -->
-    <section id="sindrome">
-      <h2>Síndrome <span>de Shaco</span></h2>
-      <p class="section__kicker">[ lei universal do lol, documentada ]</p>
-
-      <p class="text-center" style="font-size:1.3rem; max-width: 700px;">
-        <strong>Definição científica:</strong> o Shaco do <em>seu</em> time é 0/12 com headset da dollar tree.
-        O Shaco do <em>outro</em> time é rank 1 challenger, mãos de concertista, jogando com um
-        <em>banquinho</em> de cozinha por mousepad.
-      </p>
-
-      <div class="warning">
-        Não existe cura. Só existe aceitação. E /mute all.
-      </div>
-
-      <div class="gif-solo">
-        <img src="https://media.tenor.com/GQyJClFYLaYAAAAM/shaco-league-of-legends.gif" alt="im shaco main" loading="lazy" />
-      </div>
-    </section>
-
-    <!-- =================== COMPARAÇÕES =================== -->
-    <section id="vs">
-      <h2>Shaco <span>vs</span></h2>
-      <p class="section__kicker">[ comparações absurdas e emocionalmente precisas ]</p>
-
-      <div class="build-grid">
-        <div class="build-item">
-          <span class="emoji">💸</span>
-          <strong>Shaco vs Seu Boleto</strong>
-          <small>aparecem do nada, burst máximo, e você não tem visão.</small>
-        </div>
-        <div class="build-item">
-          <span class="emoji">🫠</span>
-          <strong>Shaco vs Depressão</strong>
-          <small>um ri, o outro te faz rir de nervoso. ambos invisíveis.</small>
-        </div>
-        <div class="build-item">
-          <span class="emoji">💔</span>
-          <strong>Shaco vs Seu Ex</strong>
-          <small>some por dias, reaparece no pior momento, e ainda clona.</small>
-        </div>
-        <div class="build-item">
-          <span class="emoji">🎭</span>
-          <strong>Shaco vs Coringa</strong>
-          <small>um tem filme com oscar. o outro tem 4 caixinhas no drake.</small>
-        </div>
-        <div class="build-item">
-          <span class="emoji">📉</span>
-          <strong>Shaco vs Sua MMR</strong>
-          <small>um sobe, o outro desce. adivinha qual é qual.</small>
-        </div>
-        <div class="build-item">
-          <span class="emoji">🧾</span>
-          <strong>Shaco vs INSS</strong>
-          <small>ambos te pegam por trás. só um é engraçado.</small>
-        </div>
-      </div>
-    </section>
-
-    <!-- =================== PUXA UMA CARTA =================== -->
-    <section id="carta">
-      <h2>Puxa uma <span>carta</span></h2>
-      <p class="section__kicker">[ o futuro está nas mãos do palhaço. você não escolhe ]</p>
-
-      <button id="puxar-carta" class="btn-demon">🃏 puxar carta do baralho</button>
-      <div id="carta-output" class="carta-container"></div>
-    </section>
-
-    <!-- =================== POESIA =================== -->
-    <section id="poesia">
-      <h2>Poesia <span>de boteco</span></h2>
-      <p class="section__kicker">[ rimas compostas às 3h da manhã, em queda livre de elo ]</p>
-
-      <div class="quote" style="font-family: 'VT323', monospace; font-size:1.5rem; line-height:1.8;">
-        Rosas são vermelhas, <br />
-        o mato é verdinho, <br />
-        você pisou em quatro caixinha <br />
-        e morreu sozinho.
-        <cite>— anonimo, ranqueada as 3:47</cite>
-      </div>
-
-      <div class="gif-solo">
-        <img src="https://media.tenor.com/kqbpKvIQnSEAAAAM/shaco-dostum.gif" alt="Shaco dostum meme" loading="lazy" />
-      </div>
-
-      <div class="quote" style="font-family: 'VT323', monospace; font-size:1.5rem; line-height:1.8;">
-        O real é o que te mata. <br />
-        O clone é o que ri depois. <br />
-        A gentileza vira pegadinha <br />
-        quando o palhaço é dos dois.
-        <cite>— haicai mal feito</cite>
-      </div>
-    </section>
-
-    <!-- =================== MEU PSICÓLOGO =================== -->
-    <section id="psico">
-      <h2>Meu <span>psicólogo</span> disse</h2>
-      <p class="section__kicker">[ relatos clínicos, modo terapia barata ]</p>
-
-      <div class="quote">
-        — Meu psicólogo: <em>o Shaco AP não existe, ele não pode te machucar</em>.<br />
-        — O Shaco AP do mato:
-        <cite>— formato clássico brasileiro</cite>
-      </div>
-
-      <div class="gif-solo">
-        <img src="https://media.tenor.com/yeR2U7TIIvMAAAAM/shaco-q-league-of-legends.gif" alt="Shaco Q invisibilidade" loading="lazy" />
-      </div>
-
-      <div class="quote">
-        Toda vez que o Shaco ri no meu ouvido, eu lembro do meu pai.
-        <cite>— legendas não identificadas</cite>
-      </div>
-
-      <div class="quote">
-        — Você sonhou com o quê? <br />
-        — Uma caixinha de presente. <br />
-        — E depois? <br />
-        — Nada. Foi só isso. Só a caixinha. Brilhando. <em>Perto do baron</em>.
-        <cite>— sessão nº 14, paciente permanece em ferro iv</cite>
-      </div>
-    </section>
-
-    <!-- =================== BUILD FAKE =================== -->
-    <section id="build-fake">
-      <h2>Build <span>oficial</span></h2>
-      <p class="section__kicker">[ atualizada pela riot na patch dos sonhos ]</p>
-
-      <p class="text-center" style="font-size:1.3rem; margin-bottom: 2rem;">
-        A build que <em>realmente</em> funciona, homologada pela comunidade:
-      </p>
-
-      <div class="build-grid">
-        <div class="build-item"><span class="emoji">🔮</span><strong>1x Arcano</strong><small>o item, o conceito, o estilo de vida.</small></div>
-        <div class="build-item"><span class="emoji">🦷</span><strong>1x Nashor</strong><small>agora seu AA também é traição.</small></div>
-        <div class="build-item"><span class="emoji">🌀</span><strong>1x Laço afetivo com o caos</strong><small>non-slot. item metafísico.</small></div>
-        <div class="build-item"><span class="emoji">📜</span><strong>1x Divórcio</strong><small>buff de +40 AP. nerfado em 2024.</small></div>
-        <div class="build-item"><span class="emoji">👟</span><strong>1x Boots</strong><small>qualquer uma. sinceramente qualquer uma.</small></div>
-        <div class="build-item"><span class="emoji">🐟</span><strong>1x Varinha de pesca</strong><small>shaco ap não farma. shaco ap pesca.</small></div>
-      </div>
-
-      <div class="warning">
-        Este set <em>não é aprovado</em> pela Riot. Está aprovado pelo demônio. Maior autoridade.
-      </div>
-    </section>
-
-    <!-- =================== SLOT DA BUILD =================== -->
-    <section id="slot">
-      <h2>Slot <span>da build</span></h2>
-      <p class="section__kicker">[ uma máquina decide por você. a riot comprou esta ]</p>
-
-      <div class="slot-machine" aria-label="slot machine de build">
-        <div class="reel" id="reel-1">🔮 Arcano</div>
-        <div class="reel" id="reel-2">🌀 Caos</div>
-        <div class="reel" id="reel-3">👟 Boots</div>
-      </div>
-      <button id="spin-btn" class="btn-demon">🎰 girar build</button>
-      <p id="slot-result" class="slot-result"></p>
-    </section>
-
-    <!-- =================== CLASSIFICADOS =================== -->
-    <section id="classificados">
-      <h2>Classificados <span>do demônio</span></h2>
-      <p class="section__kicker">[ quadro de avisos do servidor brasileiro ]</p>
-
-      <ul class="meme-list">
-        <li>
-          <strong>✦ procura-se</strong>
-          Shaco AP pra carry meu elo. Elo atual: ferro iv. Elo pretendido: ouro. Disponibilidade: sempre que a esposa dorme.
-        </li>
-        <li>
-          <strong>✦ vende-se</strong>
-          Dignidade, quase nova, uma dona só. Arranhões leves do último invade level 2.
-        </li>
-        <li>
-          <strong>✦ troca-se</strong>
-          Headset gamer por <em>paz de espírito</em>. Aceito propostas em MR.
-        </li>
-        <li>
-          <strong>✦ procura-se (urgente)</strong>
-          ADC que compre hexdrinker. Se você é esse ADC, me chame no privado. Posso te pagar em ouro, prata ou ctrl+4.
-        </li>
-        <li>
-          <strong>✦ aula particular</strong>
-          Ensino como fingir que não viu a caixinha. Curso de 4 sessões, certificado válido em qualquer ranqueada.
-        </li>
-        <li>
-          <strong>✦ aviso importante</strong>
-          Perdi o clone perto do baron dia 14/04. Quem achar me devolver. Última vez visto rindo.
-        </li>
-      </ul>
-
-      <div class="gif-solo">
-        <img src="https://media.tenor.com/m0-ZQAVlx18AAAAM/shaco-robator.gif" alt="Shaco robator" loading="lazy" />
-      </div>
-    </section>
-
-    <!-- =================== SPELLS =================== -->
-    <section id="spells">
-      <h2>Habilidades <span>especiais</span></h2>
-      <p class="section__kicker">[ aperte os botões. aguente as consequências ]</p>
-
-      <div class="spell-buttons">
-        <button id="spell-deceive" class="btn-spell">
-          <span class="key">Q</span>
-          Deceive
-          <small>esconder tudo por 2s</small>
-        </button>
-        <button id="spell-backstab" class="btn-spell">
-          <span class="key">E</span>
-          Backstab
-          <small>girar o mundo inteiro</small>
-        </button>
-        <button id="spell-hallucinate" class="btn-spell">
-          <span class="key">R</span>
-          Hallucinate
-          <small>invocar clones na tela</small>
-        </button>
-        <button id="spell-jest" class="btn-spell">
-          <span class="key">J</span>
-          JEST!
-          <small>chuva de HAHAHA</small>
-        </button>
-      </div>
-    </section>
-
-    <!-- =================== SÓ MAIN ENTENDE =================== -->
-    <section id="main">
-      <h2>Coisas que <span>só main</span> entende</h2>
-      <p class="section__kicker">[ se você não entende, ainda bem ]</p>
-
-      <ul class="meme-list">
-        <li>
-          <strong>✦</strong>
-          Clonar no nexus inimigo depois de perder 2 jogos seguidos, só pra rir.
-        </li>
-        <li>
-          <strong>✦</strong>
-          Trocar 200 ouro por 1 ward na base inimiga — e considerar lucro.
-        </li>
-        <li>
-          <strong>✦</strong>
-          Saber a posição exata do raptor azul dos 10 jungles adversários mais comuns.
-        </li>
-        <li>
-          <strong>✦</strong>
-          Sentir saudade da skin Asylum mesmo nunca tendo jogado com ela.
-        </li>
-        <li>
-          <strong>✦</strong>
-          47 caixinhas por partida, 4 kills, e a sensação de <em>obra completa</em>.
-        </li>
-        <li>
-          <strong>✦</strong>
-          Dar /all "nice q" depois que o oponente ultou em cima do seu clone.
-        </li>
-        <li>
-          <strong>✦</strong>
-          Não xingar no fim do jogo. Só rir. <em>HAHAHA</em>.
-        </li>
-      </ul>
-    </section>
-
-    <!-- =================== CIÊNCIA =================== -->
-    <section id="ciencia">
-      <h2>O que <span>a ciência</span> diz</h2>
-      <p class="section__kicker">[ dados de uma pesquisa que eu inventei agora ]</p>
-
-      <div class="build-grid">
-        <div class="build-item"><span class="emoji">📊</span><strong>97%</strong><small>dos Shacos inimigos são, estatisticamente, challenger disfarçado.</small></div>
-        <div class="build-item"><span class="emoji">😴</span><strong>3%</strong><small>do seu time está online. o resto está dormindo.</small></div>
-        <div class="build-item"><span class="emoji">⏱️</span><strong>0.3s</strong><small>tempo médio entre você ver o Q e virar screenshot.</small></div>
-        <div class="build-item"><span class="emoji">🧭</span><strong>∞</strong><small>quantidade de wards necessárias. solução ainda em pesquisa.</small></div>
-        <div class="build-item"><span class="emoji">🎂</span><strong>14 anos</strong><small>idade média do main Shaco AP do seu time.</small></div>
-        <div class="build-item"><span class="emoji">🕯️</span><strong>1</strong><small>velinha acesa pra riot pifar o e do shaco na próxima patch.</small></div>
-      </div>
-    </section>
-
-    <!-- =================== GALERIA =================== -->
-    <section id="galeria">
-      <h2>Galeria do <span>palhaço</span></h2>
-      <p class="section__kicker">[ olhe por alguns segundos. depois fecha a aba ]</p>
-
-      <div class="gif-grid">
-        <figure>
-          <img src="https://media.tenor.com/-Jvum_maHkIAAAAM/shaco-league-of-legends-clone.gif" alt="Shaco andando" loading="lazy" />
-          <figcaption>andando em direção à sua paz</figcaption>
-        </figure>
-        <figure>
-          <img src="https://media.tenor.com/LkINyQpujygAAAAM/shaco-shaco-lol.gif" alt="Shaco olhos verdes" loading="lazy" />
-          <figcaption>pov do seu trauma</figcaption>
-        </figure>
-        <figure>
-          <img src="https://media.tenor.com/ZfjhEWx97wcAAAAM/shaco.gif" alt="Shaco monstruoso" loading="lazy" />
-          <figcaption>boa noite, durma bem 🌙</figcaption>
-        </figure>
-        <figure>
-          <img src="https://media.tenor.com/iwJuc1p4kl0AAAAM/shaco.gif" alt="Shaco selfie main" loading="lazy" />
-          <figcaption>selfie do demônio</figcaption>
-        </figure>
-        <figure>
-          <img src="https://media.tenor.com/felX8uwcIa8AAAAM/shaco-emote-shaco.gif" alt="Shaco emote" loading="lazy" />
-          <figcaption>humor médio da segunda-feira</figcaption>
-        </figure>
-        <figure>
-          <img src="https://media.tenor.com/jb3P5ykckQoAAAAM/shaco-league-of-legends.gif" alt="Shaco caído" loading="lazy" />
-          <figcaption>fingindo estar morto (não está)</figcaption>
-        </figure>
-        <figure>
-          <img src="https://media.tenor.com/PZidE5I2pD4AAAAM/shaco-league-of-legends.gif" alt="Shaco oh my goodness" loading="lazy" />
-          <figcaption>oh my goodness gracious</figcaption>
-        </figure>
-        <figure>
-          <img src="https://media.tenor.com/5nhWcbcHb88AAAAM/shaco-paco-lol.gif" alt="Shaco Paco" loading="lazy" />
-          <figcaption>shaco paco 🕺</figcaption>
-        </figure>
-        <figure>
-          <img src="https://media.tenor.com/TSjgPqBO6A4AAAAM/shaco.gif" alt="Shaco cartoon" loading="lazy" />
-          <figcaption>pequeno e infame</figcaption>
-        </figure>
-        <figure>
-          <img src="https://media.tenor.com/OyJ9G_S7n-YAAAAM/shaco-soulfither.gif" alt="Shaco portal" loading="lazy" />
-          <figcaption>portal pra 1h37 da manhã</figcaption>
-        </figure>
-        <figure>
-          <img src="https://media.tenor.com/Uz81MImktvIAAAAM/shaco-shaco-gayming.gif" alt="Shaco gayming" loading="lazy" />
-          <figcaption>fechando o olho antes do crit</figcaption>
-        </figure>
-        <figure>
-          <img src="https://media.tenor.com/Hq7KtCAo7i0AAAAM/lolgel.gif" alt="Shaco com chapéu" loading="lazy" />
-          <figcaption>contemplando o crime</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- =================== FINAL =================== -->
-    <section id="final">
-      <h2>A última <span>piada</span></h2>
-      <p class="section__kicker">[ leia devagar. ou não ]</p>
-
-      <div class="quote" style="font-size:1.4rem;">
-        — Rir ou chorar? <br />
-        <em>— pergunta o Shaco, enquanto você faz os dois.</em>
-        <cite>— filosofia do Bufão Demoníaco</cite>
-      </div>
-
-      <p class="text-center mt-3" style="font-family:'VT323',monospace;font-size:1.4rem;color:var(--shaco-acid);">
-        Obrigado pela sua atenção. <br />
-        A caixinha <em>sempre esteve</em> atrás de você.
-      </p>
-
-      <div class="danger-zone">
-        <p style="font-family:'VT323',monospace;font-size:1.3rem;color:var(--shaco-acid);margin-bottom:1.5rem;">
-          último botão. o palhaço mandou <em>não clicar</em>.
-        </p>
-        <button id="nao-clique" class="btn-danger">⚠ NÃO CLIQUE AQUI ⚠</button>
-        <p id="click-counter" class="click-counter"></p>
-      </div>
-    </section>
-
-    <!-- =================== FOOTER =================== -->
     <footer>
-      <h3>★ A PIADA É COM VOCÊ ★</h3>
-      <p>
-        Site feito por zoeira, não por dinheiro. League of Legends e Shaco pertencem à Riot Games.
-        O trauma pertence a você.
-      </p>
-      <p>
-        Nenhum ADC foi machucado durante a produção. <br />
-        (vários foram machucados depois. constantemente.)
-      </p>
-      <p style="margin-top: 1.5rem;">
-        <a href="https://tenor.com/pt-BR/search/shaco-gifs" target="_blank" rel="noopener">GIFs: tenor.com/search/shaco</a>
-        <span style="opacity:0.5"> · </span>
-        <a href="#top">voltar ao mato</a>
-      </p>
-      <p class="laugh">HA HA HA HA HA HA HA HA HA HA HA HA</p>
+      <p><em>site feito de raiva e gifs roubados.</em> league of legends pertence à riot games. o trauma pertence a você.</p>
+      <p><a href="#top" onclick="window.scrollTo(0,0);return false;">voltar ao mato</a> · <a href="https://github.com/gabriel20angelo-web/shaco-ap" target="_blank" rel="noopener">código</a></p>
+      <p class="laugh">HA HA HA HA HA HA HA HA HA HA</p>
     </footer>
   </main>
 
   <script>
     const rand = (arr) => arr[Math.floor(Math.random() * arr.length)];
+    const randInt = (a, b) => Math.floor(Math.random() * (b - a + 1)) + a;
 
-    // ===== HA! flutuante ao clicar (não em botões interativos) =====
-    const clickMsgs = ['HA!', 'HAHA!', 'HAHAHA!', 'olha atrás', 'a piada é com você', 'só mais um pouquinho', 'truque!', '?', 'te peguei', 'não confia'];
-    document.addEventListener('click', (e) => {
-      if (e.target.closest('.box, .btn-demon, .btn-spell, .btn-ghost, .btn-danger, #spin-btn, #puxar-carta, #nao-clique, #invocar, summary, details, .hero__cta')) return;
-      const t = document.createElement('span');
-      t.textContent = rand(clickMsgs);
-      t.style.cssText = `
-        position: fixed;
-        left: ${e.clientX}px;
-        top: ${e.clientY}px;
-        color: #39ff14;
-        font-family: 'Creepster', cursive;
-        font-size: ${1.5 + Math.random() * 1.5}rem;
-        pointer-events: none;
-        z-index: 9999;
-        text-shadow: 0 0 10px #a020f0;
-        transition: all 1.2s ease-out;
-        transform: translate(-50%, -50%) rotate(${(Math.random()-0.5) * 30}deg);
-      `;
-      document.body.appendChild(t);
-      requestAnimationFrame(() => {
-        t.style.transform = `translate(${(Math.random()-0.5) * 120}px, -180%) rotate(${(Math.random()-0.5) * 40}deg)`;
-        t.style.opacity = '0';
-      });
-      setTimeout(() => t.remove(), 1200);
-    });
+    // ============ DADOS ============
 
-    // ===== CAIXINHAS =====
-    const boxOutput = document.querySelector('.box-output');
-    document.querySelectorAll('.box').forEach(box => {
-      box.addEventListener('click', () => {
-        box.classList.add('opened');
-        box.textContent = '🃏';
-        boxOutput.textContent = box.dataset.prize;
-        boxOutput.classList.remove('show');
-        void boxOutput.offsetWidth;
-        boxOutput.classList.add('show');
-        if (box.dataset.effect === 'shake') {
-          document.body.classList.add('shaken');
-          setTimeout(() => document.body.classList.remove('shaken'), 500);
-        }
-        setTimeout(() => {
-          box.classList.remove('opened');
-          box.textContent = '🎁';
-        }, 4000);
-      });
-    });
+    const JOKES = [
+      "shaco não é troll. shaco é <em>vocação</em>.",
+      "3 caixinhas é aviso. 4 é promessa. 5 é testamento.",
+      "warde tudo. <em>o tudo ainda não é suficiente.</em>",
+      "o clone era o original. você é a cópia.",
+      "ser main shaco é opcional. parar não é.",
+      "'queue pop.' ele já estava te esperando.",
+      "a caixinha sabe do seu mmr.",
+      "o Baiano viu.",
+      "não existe gg. existe <em>survivor's guilt</em>.",
+      "ward rosa: R$200. ansiolítico: R$50. <em>pergunta.</em>",
+      "meu pai nunca me explicou essa build.",
+      "'olha atrás de você.' eu olhei. ele tava lá.",
+      "report: shaco, jg, feeding. razão: <em>nasceu</em>.",
+      "shaco + coringa: duas profissões, uma vocação.",
+      "tá com medo? <em>ainda bem.</em>",
+      "você nunca vê o primeiro q. o segundo você lembra da infância.",
+      "shaco ap é tipo coringa com mirins.",
+      "não pise no mato. <em>pise no mato.</em>",
+      "meu oftalmologista jurou que eu vi o q. mentiu.",
+      "minha ex virou main shaco. saí do relacionamento carry.",
+      "shaco tem skin halloween. é pra ele usar o ano todo.",
+      "se você clona, <em>o clone clica.</em>",
+      "'nice q' é o luto do adc.",
+      "<strong>a piada é com você.</strong>",
+      "shaco ap e ad são a mesma pessoa em terapias diferentes.",
+      "não existe shaco ruim. existe adc confiante.",
+      "o clone mijou de rir. literalmente.",
+      "ward no drake? placebo.",
+      "você abriu uma caixinha. agora tem duas.",
+      "jogar shaco é aceitar. viver contra é <em>aprender</em>.",
+      "ninguém jogou shaco ap e continuou a mesma pessoa.",
+      "'só mais um pouquinho…' ele diz, enquanto você some.",
+      "a lore diz que o shaco é amaldiçoado. <em>amaldiçoados NÓS.</em>",
+      "o baron é um ponto de encontro. o shaco marcou.",
+      "faz shaco ap. quem faz shaco ap não perde. <em>só desiste.</em>",
+      "sua mãe te avisou. era o shaco o tempo todo."
+    ];
 
-    // ===== PUXA CARTA =====
-    const cartas = [
+    const BOXES = [
+      { prize: "🎁 +1500 dano psicológico. é de graça." },
+      { prize: "💀 você morreu antes de clicar.", effect: "shake" },
+      { prize: "🪦 era mimic. caíste bonito." },
+      { prize: "🧾 boleto vencido. hoje." },
+      { prize: "🃏 coringa ativo. +30% de pirar no jogo." },
+      { prize: "🐟 peixe morto. shaco não farma, pesca." },
+      { prize: "🫥 vazio. como seu elo." },
+      { prize: "📦 outra caixinha dentro. clica de novo?" },
+      { prize: "⚠ armadilha. tarde demais.", effect: "shake" },
+      { prize: "🗡 backstab. senti, não vi." },
+      { prize: "🎭 virou main yasuo. pior ainda." },
+      { prize: "✨ 1 ward rosa. vc não vai usar." },
+      { prize: "🌀 você virou clone do clone." },
+      { prize: "🎲 rolou 1 natural. game over." },
+      { prize: "📉 -20 LP em vida real." },
+      { prize: "🎂 happy birthday do palhaço. 0 anos." },
+      { prize: "👀 alguém te viu." },
+      { prize: "🔔 notificação: ele chegou." },
+      { prize: "🎯 alvo marcado: você.", effect: "shake" },
+      { prize: "🗝 chave pra porta inexistente." },
+      { prize: "🦷 um dente. não é seu." },
+      { prize: "📜 contrato: você é main shaco agora." },
+      { prize: "🌙 boa noite. não durma." },
+      { prize: "🧿 olho grande do shaco em você." },
+      { prize: "🧃 suco. ele cuspiu dentro." }
+    ];
+
+    const GIFS = [
+      { src: "https://media.tenor.com/X95_fOkzFOIAAAAM/shaco-honsementioned.gif", caption: "pula da caixa. todo dia." },
+      { src: "https://media.tenor.com/BT1t3WFaDSsAAAAM/i-jest-shaco.gif", caption: "i jest." },
+      { src: "https://media.tenor.com/NBLyuTxv0A0AAAAM/shaco-bong.gif", caption: "pose de museu do trauma" },
+      { src: "https://media.tenor.com/LkINyQpujygAAAAM/shaco-shaco-lol.gif", caption: "olhinhos verdes te esperando" },
+      { src: "https://media.tenor.com/yeR2U7TIIvMAAAAM/shaco-q-league-of-legends.gif", caption: "q. e já era." },
+      { src: "https://media.tenor.com/-Jvum_maHkIAAAAM/shaco-league-of-legends-clone.gif", caption: "andando em direção ao seu cochilo" },
+      { src: "https://media.tenor.com/GQyJClFYLaYAAAAM/shaco-league-of-legends.gif", caption: "im shaco main" },
+      { src: "https://media.tenor.com/ZfjhEWx97wcAAAAM/shaco.gif", caption: "boa noite 🌙" },
+      { src: "https://media.tenor.com/iwJuc1p4kl0AAAAM/shaco.gif", caption: "selfie. assinado: kanzi." },
+      { src: "https://media.tenor.com/felX8uwcIa8AAAAM/shaco-emote-shaco.gif", caption: "segunda-feira" },
+      { src: "https://media.tenor.com/kqbpKvIQnSEAAAAM/shaco-dostum.gif", caption: "dostum." },
+      { src: "https://media.tenor.com/jb3P5ykckQoAAAAM/shaco-league-of-legends.gif", caption: "fingindo estar morto" },
+      { src: "https://media.tenor.com/Y-fQ11vhaYEAAAAM/shaco-nedenbukadarciddisin.gif", caption: "por que tão sério?" },
+      { src: "https://media.tenor.com/PZidE5I2pD4AAAAM/shaco-league-of-legends.gif", caption: "oh my goodness gracious" },
+      { src: "https://media.tenor.com/5nhWcbcHb88AAAAM/shaco-paco-lol.gif", caption: "shaco paco 🕺" },
+      { src: "https://media.tenor.com/TSjgPqBO6A4AAAAM/shaco.gif", caption: "pequeno e infame" },
+      { src: "https://media.tenor.com/m0-ZQAVlx18AAAAM/shaco-robator.gif", caption: "robator em ação" },
+      { src: "https://media.tenor.com/OyJ9G_S7n-YAAAAM/shaco-soulfither.gif", caption: "portal pra 1h37" },
+      { src: "https://media.tenor.com/Uz81MImktvIAAAAM/shaco-shaco-gayming.gif", caption: "olho fechado, crit certo" },
+      { src: "https://media.tenor.com/Hq7KtCAo7i0AAAAM/lolgel.gif", caption: "contemplando crime" }
+    ];
+
+    const QUOTES = [
+      { text: "joguei 200 partidas. minha esposa foi embora. liquido positivo.", cite: "rodrigo, 34" },
+      { text: "perdi 12kg de suor ouvindo HAHAHA no ward.", cite: "adc anônimo" },
+      { text: "meu psiquiatra aumentou o ritalin.", cite: "sessão nº14" },
+      { text: "ele clonou. mijou de rir. eu desinstalei.", cite: "fórum br, 2019" },
+      { text: "minha ex me deixou quando descobriu minha build.", cite: "main desde season 4" },
+      { text: "toda vez que o shaco ri eu lembro do meu pai.", cite: "confissão anônima" },
+      { text: "o ward rosa era placebo. eu sempre soube.", cite: "invocador arrependido" },
+      { text: "não existe cura. só /mute all.", cite: "r/shacomains, adaptado" },
+      { text: "'que tal um truque de mágica?' ele disse. eu aceitei. morri.", cite: "último log do adc" }
+    ];
+
+    const STATS = [
+      { value: "97%", label: "dos shacos inimigos são challenger disfarçado" },
+      { value: "0.3s", label: "entre ver o Q e virar screenshot" },
+      { value: "∞", label: "wards necessárias. ainda em pesquisa." },
+      { value: "14", label: "idade média do main shaco do seu time" },
+      { value: "1", label: "velinha acesa pra Riot nerfar o E" },
+      { value: "47", label: "caixinhas por partida, em média" },
+      { value: "200", label: "partidas por divórcio (±3)" },
+      { value: "12kg", label: "suor médio por ranqueada" },
+      { value: "-500", label: "anos de paz interior" },
+      { value: "3%", label: "do seu time está realmente online" }
+    ];
+
+    const SPELLS = [
+      { key: "Q", name: "Deceive", desc: "some 2s", act: "deceive" },
+      { key: "E", name: "Backstab", desc: "gira tudo", act: "backstab" },
+      { key: "R", name: "Hallucinate", desc: "spawn de clones", act: "hallucinate" },
+      { key: "J", name: "JEST!", desc: "chuva de HA", act: "jest" }
+    ];
+
+    const CARTAS = [
       "Seu próximo jogo vai ter Shaco no inimigo. Sinto muito.",
       "Você vai comprar Malmortius. Era pra comprar Banshee. Paciência.",
       "A caixinha que você pisou era do Shaco ALIADO. Não ajudou.",
@@ -590,91 +176,242 @@
       "Você vai clonar no Nexus inimigo e rir. Sua vida vai melhorar.",
       "Hoje é dia de ranqueada. Volta amanhã. Por favor.",
       "O ADC inimigo é seu ex. Boa sorte nisso.",
-      "Shaco AP é o caminho. O caminho é escorregadio e mal iluminado.",
+      "Shaco AP é o caminho. O caminho é escorregadio.",
       "O Baiano vai comentar sua gameplay. Não vai ser bonito.",
-      "Seu jungler é 0/4. Mas tem 14 farm. Ele tá se esforçando.",
+      "Seu jungler é 0/4, mas tem 14 farm. Ele tá se esforçando.",
       "A ward que você colocou tá no tribo errado desde o início.",
       "Você vai ler esta carta, achar graça, e perder mesmo assim.",
       "Parabéns. Você tirou Shaco main. Não tem mais volta.",
-      "Seu support comprou Redenção contra time full AP. Respira fundo.",
+      "Seu support comprou Redenção contra time full AP. Respira.",
       "O inimigo tem Teemo, Fiddle e Shaco. Só entra se quiser sofrer.",
-      "A Riot vai nerfar o E do Shaco. Daqui a 4 patches. Aguenta.",
+      "A Riot vai nerfar o E do Shaco. Daqui a 4 patches.",
       "Você vai ver um Shaco farmando krug. É armadilha. Corre.",
       "Hoje o jogo trava no loading. É o universo te salvando."
     ];
-    let cartaCount = 0;
-    document.getElementById('puxar-carta')?.addEventListener('click', () => {
-      cartaCount++;
+
+    const SLOT_ITEMS = {
+      1: ['🔮 Arcano', '🎩 Rabadon', '🌙 Luden', '🦷 Nashor', '💀 Malignance', '🔥 Shadowflame', '🧙 Liandry', '⚡ Stormsurge'],
+      2: ['🌀 Caos', '📜 Divórcio', '🧾 Boleto', '🎁 47 Caixinhas', '🕊 Paz', '🫠 Pânico', '🎭 Trauma', '💀 Vazio'],
+      3: ['👟 Boots', '⏳ Zhonya', '🪄 Varinha', '🧹 Vassoura', '🚗 Carro Velho', '🦠 Void', '🔮 Banshee', '💎 Morello']
+    };
+
+    const SLOT_REACTIONS = [
+      '✨ CARRY GARANTIDO ✨', '🔔 RITO NERFA ISSO', '👑 META DEFINIDA',
+      '😈 O PALHAÇO APROVA', '🤡 TROLL PICK CONFIRMADO', '💀 VOCÊ FOI DEMITIDO',
+      '📉 REPORTA VOCÊ MESMO', '✌ ELO FICA', '🎯 NÃO ERRA UM', '🚨 HOTFIX NECESSÁRIO'
+    ];
+
+    // ============ BUILD CHAOS GRID ============
+
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function mkCard(type, size) {
+      const c = document.createElement('div');
+      c.className = 'card';
+      c.dataset.type = type;
+      c.dataset.size = size;
+      c.style.setProperty('--rot', ((Math.random() - 0.5) * 5).toFixed(1) + 'deg');
+      return c;
+    }
+
+    function buildItems() {
+      const items = [];
+      JOKES.forEach(j => items.push({ type: 'joke', data: j }));
+      BOXES.forEach(b => items.push({ type: 'box', data: b }));
+      GIFS.forEach(g => items.push({ type: 'gif', data: g }));
+      QUOTES.forEach(q => items.push({ type: 'quote', data: q }));
+      STATS.forEach(s => items.push({ type: 'stat', data: s }));
+      SPELLS.forEach(s => items.push({ type: 'spell', data: s }));
+      items.push({ type: 'carta' });
+      items.push({ type: 'slot' });
+      items.push({ type: 'danger' });
+      return items;
+    }
+
+    function renderItem(item) {
+      let c;
+      switch (item.type) {
+        case 'joke': {
+          const s = rand(['xs', 's', 's', 'm']);
+          c = mkCard('joke', s);
+          c.innerHTML = `<p>${item.data}</p>`;
+          return c;
+        }
+        case 'box': {
+          c = mkCard('box', 'xs');
+          const btn = document.createElement('button');
+          btn.className = 'box';
+          btn.textContent = '🎁';
+          btn.dataset.prize = item.data.prize;
+          if (item.data.effect) btn.dataset.effect = item.data.effect;
+          c.appendChild(btn);
+          return c;
+        }
+        case 'gif': {
+          const s = rand(['s', 's', 'm']);
+          c = mkCard('gif', s);
+          c.innerHTML = `<img src="${item.data.src}" alt="${item.data.caption}" loading="lazy"><figcaption>${item.data.caption}</figcaption>`;
+          return c;
+        }
+        case 'quote': {
+          c = mkCard('quote', 'm');
+          c.innerHTML = `<p>“${item.data.text}”</p><cite>— ${item.data.cite}</cite>`;
+          return c;
+        }
+        case 'stat': {
+          c = mkCard('stat', 'xs');
+          c.innerHTML = `<div class="stat-value">${item.data.value}</div><div class="stat-label">${item.data.label}</div>`;
+          return c;
+        }
+        case 'spell': {
+          c = mkCard('spell', 'xs');
+          c.innerHTML = `<button class="btn-spell" data-spell="${item.data.act}"><span class="key">${item.data.key}</span><span>${item.data.name}</span><small>${item.data.desc}</small></button>`;
+          return c;
+        }
+        case 'carta': {
+          c = mkCard('carta', 'm');
+          c.innerHTML = `
+            <div class="card-inner">
+              <button id="puxar-carta" class="btn-demon">🃏 puxar carta</button>
+              <div id="carta-output" class="carta-container"></div>
+            </div>`;
+          return c;
+        }
+        case 'slot': {
+          c = mkCard('slot', 'l');
+          c.innerHTML = `
+            <div class="card-inner">
+              <div class="slot-machine">
+                <div class="reel" id="reel-1">🔮 Arcano</div>
+                <div class="reel" id="reel-2">🌀 Caos</div>
+                <div class="reel" id="reel-3">👟 Boots</div>
+              </div>
+              <button id="spin-btn" class="btn-demon">🎰 girar build</button>
+              <p id="slot-result" class="slot-result"></p>
+            </div>`;
+          return c;
+        }
+        case 'danger': {
+          c = mkCard('danger', 'm');
+          c.innerHTML = `
+            <div class="card-inner">
+              <button id="nao-clique" class="btn-danger">⚠ NÃO CLIQUE ⚠</button>
+              <p id="click-counter" class="click-counter"></p>
+            </div>`;
+          return c;
+        }
+      }
+    }
+
+    function renderChaos() {
+      const grid = document.getElementById('chaos');
+      grid.innerHTML = '';
+      const items = shuffle(buildItems());
+      const frag = document.createDocumentFragment();
+      items.forEach(item => {
+        const el = renderItem(item);
+        if (el) frag.appendChild(el);
+      });
+      grid.appendChild(frag);
+      attachInteractions();
+    }
+
+    // ============ INTERATIVIDADE ============
+
+    const boxOutput = document.querySelector('.box-output');
+
+    function openBox(btn) {
+      btn.classList.add('opened');
+      btn.textContent = '🃏';
+      boxOutput.textContent = btn.dataset.prize;
+      boxOutput.classList.remove('show');
+      void boxOutput.offsetWidth;
+      boxOutput.classList.add('show');
+      if (btn.dataset.effect === 'shake') {
+        document.body.classList.add('shaken');
+        setTimeout(() => document.body.classList.remove('shaken'), 500);
+      }
+      setTimeout(() => {
+        btn.classList.remove('opened');
+        btn.textContent = '🎁';
+      }, 3500);
+    }
+
+    function puxarCarta() {
       const out = document.getElementById('carta-output');
+      if (!out) return;
+      const n = (parseInt(out.dataset.count || '0', 10) + 1);
+      out.dataset.count = n;
       out.innerHTML = '';
       const div = document.createElement('div');
       div.className = 'carta';
-      div.setAttribute('data-num', '#' + String(cartaCount).padStart(3, '0'));
-      div.textContent = rand(cartas);
+      div.setAttribute('data-num', '#' + String(n).padStart(3, '0'));
+      div.textContent = rand(CARTAS);
       out.appendChild(div);
-    });
+    }
 
-    // ===== SLOT MACHINE =====
-    const slotItems = {
-      1: ['🔮 Arcano', '🎩 Rabadon', '🌙 Luden', '🦷 Nashor', '💀 Malignance', '🔥 Shadowflame', '🧙 Liandry', '⚡ Stormsurge'],
-      2: ['🌀 Caos', '📜 Divórcio', '🧾 Boleto', '🎁 47 Caixinhas', '🕊 Paz de Espírito', '🫠 Pânico', '🎭 Trauma', '💀 Vazio'],
-      3: ['👟 Boots', '⏳ Zhonya', '🪄 Varinha', '🧹 Vassoura', '🚗 Carro Velho', '🦠 Void', '🔮 Banshee', '💎 Morellonomicon']
-    };
-    const slotReactions = [
-      '✨ CARRY GARANTIDO ✨',
-      '🔔 RITO NERFA ISSO',
-      '👑 META DEFINIDA',
-      '😈 O PALHAÇO APROVA',
-      '🤡 TROLL PICK CONFIRMADO',
-      '💀 VOCÊ FOI DEMITIDO',
-      '📉 REPORTA VOCÊ MESMO',
-      '✌ ELO FICA',
-      '🎯 NÃO ERRA UM',
-      '🚨 HOTFIX NECESSÁRIO'
-    ];
-    document.getElementById('spin-btn')?.addEventListener('click', () => {
+    function spinSlot() {
       const result = document.getElementById('slot-result');
+      if (!result) return;
       result.classList.remove('show');
       result.textContent = '';
       [1, 2, 3].forEach((i) => {
         const reel = document.getElementById('reel-' + i);
+        if (!reel) return;
         reel.classList.add('spinning');
         let ticks = 0;
-        const maxTicks = 12 + i * 5;
+        const max = 10 + i * 5;
         const interval = setInterval(() => {
-          reel.textContent = rand(slotItems[i]);
+          reel.textContent = rand(SLOT_ITEMS[i]);
           ticks++;
-          if (ticks >= maxTicks) {
+          if (ticks >= max) {
             clearInterval(interval);
             reel.classList.remove('spinning');
             if (i === 3) {
               setTimeout(() => {
-                result.textContent = rand(slotReactions);
+                result.textContent = rand(SLOT_REACTIONS);
                 result.classList.add('show');
               }, 200);
             }
           }
         }, 80);
       });
-    });
+    }
 
-    // ===== SPELLS =====
     function cooldown(btn, ms) {
       btn.classList.add('cooldown');
       setTimeout(() => btn.classList.remove('cooldown'), ms);
     }
 
-    document.getElementById('spell-deceive')?.addEventListener('click', (e) => {
-      document.body.classList.add('deceive');
-      setTimeout(() => document.body.classList.remove('deceive'), 2000);
-      cooldown(e.currentTarget, 2500);
-    });
-
-    document.getElementById('spell-backstab')?.addEventListener('click', (e) => {
-      document.body.classList.add('backstab');
-      setTimeout(() => document.body.classList.remove('backstab'), 1400);
-      cooldown(e.currentTarget, 1800);
-    });
+    function castSpell(act, btn) {
+      if (btn?.classList.contains('cooldown')) return;
+      switch (act) {
+        case 'deceive':
+          document.body.classList.add('deceive');
+          setTimeout(() => document.body.classList.remove('deceive'), 2000);
+          if (btn) cooldown(btn, 2500);
+          break;
+        case 'backstab':
+          document.body.classList.add('backstab');
+          setTimeout(() => document.body.classList.remove('backstab'), 1400);
+          if (btn) cooldown(btn, 1800);
+          break;
+        case 'hallucinate':
+          spawnClones('https://media.tenor.com/yeR2U7TIIvMAAAAM/shaco-q-league-of-legends.gif', 6);
+          if (btn) cooldown(btn, 4000);
+          break;
+        case 'jest':
+          rainHA(40, 60);
+          if (btn) cooldown(btn, 3000);
+          break;
+      }
+    }
 
     function spawnClones(src, count) {
       for (let i = 0; i < count; i++) {
@@ -684,19 +421,10 @@
         c.style.left = Math.random() * 85 + '%';
         c.style.top = (10 + Math.random() * 75) + '%';
         document.body.appendChild(c);
-        setTimeout(() => {
-          c.style.transition = 'all 0.4s';
-          c.style.opacity = '0';
-          c.style.transform = 'scale(0) rotate(360deg)';
-        }, 2500 + i * 250);
+        setTimeout(() => { c.style.transition = 'all 0.4s'; c.style.opacity = '0'; c.style.transform = 'scale(0) rotate(360deg)'; }, 2500 + i * 250);
         setTimeout(() => c.remove(), 3500 + i * 250);
       }
     }
-
-    document.getElementById('spell-hallucinate')?.addEventListener('click', (e) => {
-      spawnClones('https://media.tenor.com/yeR2U7TIIvMAAAAM/shaco-q-league-of-legends.gif', 6);
-      cooldown(e.currentTarget, 4000);
-    });
 
     function rainHA(count, speedMs) {
       const frases = ['HA!', 'HAHA!', 'HAHAHA!', '🃏', 'HA HA HA'];
@@ -715,55 +443,82 @@
       }
     }
 
-    document.getElementById('spell-jest')?.addEventListener('click', (e) => {
-      rainHA(40, 60);
-      cooldown(e.currentTarget, 3000);
+    // Click delegate — 1 listener pro grid inteiro
+    function attachInteractions() {
+      // nada por item — tudo via delegate no document
+    }
+
+    document.addEventListener('click', (e) => {
+      const box = e.target.closest('.box');
+      if (box) { openBox(box); return; }
+
+      const spell = e.target.closest('[data-spell]');
+      if (spell) { castSpell(spell.dataset.spell, spell); return; }
+
+      if (e.target.closest('#puxar-carta')) { puxarCarta(); return; }
+      if (e.target.closest('#spin-btn')) { spinSlot(); return; }
+      if (e.target.closest('#nao-clique')) { naoCliqueHandler(); return; }
+      if (e.target.closest('#shuffle')) { renderChaos(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+      if (e.target.closest('#invocar')) {
+        document.body.classList.add('shaken');
+        setTimeout(() => document.body.classList.remove('shaken'), 500);
+        spawnClones('https://media.tenor.com/X95_fOkzFOIAAAAM/shaco-honsementioned.gif', 4);
+        rainHA(20, 80);
+        return;
+      }
+
+      // fallback: HA flutuante pra qualquer outro clique
+      const ignores = ['a', 'summary', 'details', 'button', 'input'];
+      if (ignores.some(t => e.target.closest(t))) return;
+      const msgs = ['HA!', 'HAHA!', 'olha atrás', 'a piada é com você', 'truque!', '?', 'te peguei'];
+      const t = document.createElement('span');
+      t.textContent = rand(msgs);
+      t.style.cssText = `
+        position: fixed; left:${e.clientX}px; top:${e.clientY}px;
+        color:#39ff14; font-family:'Creepster',cursive;
+        font-size:${1.3 + Math.random()*1.2}rem;
+        pointer-events:none; z-index:9999;
+        text-shadow:0 0 10px #a020f0;
+        transition:all 1.2s ease-out;
+        transform:translate(-50%,-50%) rotate(${(Math.random()-0.5)*30}deg);
+      `;
+      document.body.appendChild(t);
+      requestAnimationFrame(() => {
+        t.style.transform = `translate(${(Math.random()-0.5)*100}px,-180%) rotate(${(Math.random()-0.5)*40}deg)`;
+        t.style.opacity = '0';
+      });
+      setTimeout(() => t.remove(), 1200);
     });
 
-    // ===== INVOCAR SHACO (hero) =====
-    document.getElementById('invocar')?.addEventListener('click', () => {
-      document.body.classList.add('shaken');
-      setTimeout(() => document.body.classList.remove('shaken'), 500);
-      spawnClones('https://media.tenor.com/X95_fOkzFOIAAAAM/shaco-honsementioned.gif', 4);
-      rainHA(20, 80);
-    });
-
-    // ===== NÃO CLIQUE =====
+    // Nao Clique
     let clickCount = 0;
     const naoCliqueMsgs = [
-      '🃏 eu avisei.',
-      '🃏 você clicou. previsível.',
-      '🃏 olha o que você fez.',
-      '🃏 isso vai pro report.',
-      '🃏 você clicou DE NOVO?',
-      '🃏 tá feliz agora?',
-      '🃏 boa sorte dormindo.',
-      '🃏 o palhaço anotou seu nome.',
-      '🃏 você é o alvo agora.',
-      '🃏 HAHAHAHAHAHA'
+      '🃏 eu avisei.', '🃏 previsível.', '🃏 olha o que você fez.',
+      '🃏 vai pro report.', '🃏 de NOVO?', '🃏 tá feliz?',
+      '🃏 boa sorte dormindo.', '🃏 ele anotou seu nome.', '🃏 HAHAHAHA'
     ];
-    document.getElementById('nao-clique')?.addEventListener('click', () => {
+    function naoCliqueHandler() {
       clickCount++;
-      document.getElementById('click-counter').textContent =
-        'cliques: ' + clickCount + ' · o palhaço tá rindo de você ' + clickCount + 'x mais';
-      rainHA(60, 40);
+      const cc = document.getElementById('click-counter');
+      if (cc) cc.textContent = 'cliques: ' + clickCount + ' · rindo de você ' + clickCount + 'x mais';
+      rainHA(50, 40);
       document.body.classList.add('shaken');
       setTimeout(() => document.body.classList.remove('shaken'), 500);
       if (clickCount === 1 || clickCount % 3 === 0) {
         setTimeout(() => alert(rand(naoCliqueMsgs)), 400);
       }
-    });
+    }
 
-    // ===== Konami code =====
+    // Konami
     const konami = [38,38,40,40,37,39,37,39,66,65];
     let kpos = 0;
     document.addEventListener('keydown', (e) => {
       if (e.keyCode === konami[kpos]) {
         kpos++;
         if (kpos === konami.length) {
-          alert('🃏 VOCÊ ENCONTROU O CLONE. A PIADA ERA COM VOCÊ O TEMPO TODO. 🃏');
-          document.getElementById('spell-hallucinate')?.click();
-          document.getElementById('spell-jest')?.click();
+          alert('🃏 a piada era com você o tempo todo. 🃏');
+          castSpell('hallucinate');
+          castSpell('jest');
           kpos = 0;
         }
       } else {
@@ -771,33 +526,29 @@
       }
     });
 
-    // ===== Notificação surpresa após 15s =====
-    setTimeout(() => {
+    // Notificação surpresa recorrente
+    function popSurprise() {
+      const avisos = [
+        '👀 alguém está te observando',
+        '🃏 clicou em algo?',
+        '📦 uma caixinha apareceu em algum card',
+        '⚠ cuidado com a próxima piada',
+        '💀 ele voltou pro mapa',
+        '🔔 you have been noticed',
+        '🗡 backstab é sempre.',
+        '🃏 ele tá na próxima aba'
+      ];
       const s = document.createElement('div');
-      s.textContent = '👀 alguém está te observando';
-      s.style.cssText = `
-        position: fixed;
-        bottom: 1.5rem;
-        right: 1.5rem;
-        background: #000;
-        border: 2px solid #39ff14;
-        color: #caff00;
-        padding: 0.8rem 1.2rem;
-        font-family: 'VT323', monospace;
-        font-size: 1rem;
-        border-radius: 8px;
-        z-index: 9998;
-        animation: pop-text 0.6s;
-        cursor: pointer;
-        box-shadow: 0 0 20px #a020f0;
-      `;
-      s.addEventListener('click', () => {
-        s.remove();
-        rainHA(15, 80);
-      });
+      s.className = 'surprise-toast';
+      s.textContent = rand(avisos);
+      s.addEventListener('click', () => { s.remove(); rainHA(12, 80); });
       document.body.appendChild(s);
-      setTimeout(() => s.remove(), 7000);
-    }, 12000);
+      setTimeout(() => { if (s.parentNode) s.remove(); }, 6000);
+    }
+    setTimeout(() => { popSurprise(); setInterval(popSurprise, 35000); }, 10000);
+
+    // Bootstrap
+    renderChaos();
   </script>
 </body>
 </html>
