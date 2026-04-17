@@ -1,0 +1,717 @@
+/* ============================================
+   SHACO AP — Stylesheet do Demônio Palhaço
+   ============================================ */
+
+:root {
+  --shaco-green: #39ff14;
+  --shaco-purple: #a020f0;
+  --shaco-dark: #0a0014;
+  --shaco-blood: #8b0000;
+  --shaco-acid: #caff00;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Rubik', system-ui, sans-serif;
+  background:
+    radial-gradient(ellipse at top left, rgba(160, 32, 240, 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(57, 255, 20, 0.1) 0%, transparent 50%),
+    linear-gradient(180deg, #0a0014 0%, #000 100%);
+  background-attachment: fixed;
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><text y='26' font-size='28'>🗡️</text></svg>"), auto;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Creepster', 'Impact', cursive;
+  letter-spacing: 3px;
+  line-height: 1.1;
+}
+
+/* Fundinho de "névoa" com pontinhos piscando */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(57, 255, 20, 0.4) 50%, transparent 50%),
+    radial-gradient(1px 1px at 60% 70%, rgba(160, 32, 240, 0.5) 50%, transparent 50%),
+    radial-gradient(2px 2px at 80% 10%, rgba(255, 255, 255, 0.3) 50%, transparent 50%),
+    radial-gradient(1px 1px at 40% 90%, rgba(57, 255, 20, 0.4) 50%, transparent 50%);
+  background-size: 200px 200px, 150px 150px, 300px 300px, 250px 250px;
+  animation: float-particles 20s linear infinite;
+  opacity: 0.7;
+  z-index: 0;
+}
+
+@keyframes float-particles {
+  0% { background-position: 0 0, 0 0, 0 0, 0 0; }
+  100% { background-position: 200px 200px, -150px 150px, 300px -300px, -250px 250px; }
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+.hero__eyebrow {
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  color: var(--shaco-acid);
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%, 60%, 100% { opacity: 0.8; }
+  30% { opacity: 0.3; }
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 12vw, 9rem);
+  color: var(--shaco-green);
+  text-shadow:
+    0 0 10px var(--shaco-green),
+    0 0 25px var(--shaco-purple),
+    0 0 50px var(--shaco-purple),
+    4px 4px 0 #000;
+  animation: glitch 4s infinite;
+  margin-bottom: 1rem;
+}
+
+.hero h1 span {
+  color: var(--shaco-purple);
+  text-shadow:
+    0 0 10px var(--shaco-purple),
+    0 0 25px var(--shaco-green),
+    4px 4px 0 #000;
+  display: inline-block;
+  animation: wiggle 3s ease-in-out infinite;
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-3px, 1px); filter: hue-rotate(15deg); }
+  20% { transform: translate(2px, -1px); }
+  30% { transform: translate(-1px, 2px); filter: hue-rotate(-15deg); }
+  40% { transform: translate(1px, -2px); }
+  50% { transform: translate(0, 0); filter: none; }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+.hero__sub {
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  max-width: 700px;
+  color: #eee;
+  margin-bottom: 2.5rem;
+  padding: 0 1rem;
+}
+
+.hero__sub em {
+  color: var(--shaco-acid);
+  font-style: normal;
+  font-weight: bold;
+}
+
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--shaco-purple);
+  color: #fff;
+  font-family: 'Rubik Mono One', monospace;
+  padding: 1.2rem 2.5rem;
+  font-size: 1.1rem;
+  text-decoration: none;
+  border: 3px solid var(--shaco-green);
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-shadow:
+    0 0 20px var(--shaco-purple),
+    0 0 40px rgba(160, 32, 240, 0.6);
+  transition: all 0.3s;
+  animation: pulse 2s infinite;
+}
+
+.hero__cta:hover {
+  transform: scale(1.08) rotate(-2deg);
+  background: var(--shaco-green);
+  color: #000;
+  box-shadow: 0 0 40px var(--shaco-green);
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 20px var(--shaco-purple), 0 0 40px rgba(160, 32, 240, 0.6); }
+  50% { box-shadow: 0 0 30px var(--shaco-green), 0 0 60px rgba(57, 255, 20, 0.6); }
+}
+
+.hero__hero-gif {
+  margin-top: 3rem;
+  max-width: 400px;
+  width: 90%;
+  border: 4px solid var(--shaco-green);
+  border-radius: 12px;
+  box-shadow:
+    0 0 40px var(--shaco-purple),
+    0 20px 60px rgba(0, 0, 0, 0.8);
+  transform: rotate(-2deg);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: rotate(-2deg) translateY(0); }
+  50% { transform: rotate(2deg) translateY(-15px); }
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: 2rem;
+  font-family: 'VT323', monospace;
+  color: var(--shaco-green);
+  font-size: 1.5rem;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+/* ============================================
+   SECTIONS GERAIS
+   ============================================ */
+
+section {
+  padding: 5rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+section > h2 {
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  color: var(--shaco-purple);
+  text-shadow:
+    0 0 15px var(--shaco-purple),
+    3px 3px 0 #000;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  transform: rotate(-1deg);
+}
+
+section > h2 span {
+  color: var(--shaco-green);
+  text-shadow:
+    0 0 15px var(--shaco-green),
+    3px 3px 0 #000;
+}
+
+.section__kicker {
+  text-align: center;
+  font-family: 'VT323', monospace;
+  color: var(--shaco-acid);
+  letter-spacing: 4px;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+}
+
+section p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+section p strong {
+  color: var(--shaco-green);
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.5);
+}
+
+section p em {
+  color: var(--shaco-acid);
+  font-style: normal;
+}
+
+/* ============================================
+   GIFS SPAM
+   ============================================ */
+
+.gif-solo {
+  display: flex;
+  justify-content: center;
+  margin: 3rem auto;
+  max-width: 520px;
+}
+
+.gif-solo img {
+  width: 100%;
+  border: 4px solid var(--shaco-green);
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(160, 32, 240, 0.6);
+  transform: rotate(-3deg);
+  transition: transform 0.4s;
+}
+
+.gif-solo img:hover {
+  transform: rotate(0) scale(1.03);
+}
+
+.gif-solo:nth-child(even) img {
+  transform: rotate(3deg);
+  border-color: var(--shaco-purple);
+}
+
+.gif-solo:nth-child(even) img:hover {
+  transform: rotate(0) scale(1.03);
+}
+
+.gif-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin: 3rem 0;
+}
+
+.gif-grid figure {
+  overflow: hidden;
+  border: 3px solid var(--shaco-purple);
+  border-radius: 8px;
+  background: #000;
+  box-shadow: 0 0 20px rgba(160, 32, 240, 0.4);
+  transition: all 0.3s;
+  position: relative;
+}
+
+.gif-grid figure:nth-child(3n) { border-color: var(--shaco-green); }
+.gif-grid figure:nth-child(3n+1) { border-color: var(--shaco-acid); }
+
+.gif-grid figure:hover {
+  transform: scale(1.05) rotate(-2deg);
+  z-index: 2;
+  box-shadow: 0 0 40px var(--shaco-green);
+}
+
+.gif-grid img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.gif-grid figcaption {
+  padding: 0.7rem;
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  color: var(--shaco-acid);
+  text-align: center;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* ============================================
+   BUILD (grid de itens)
+   ============================================ */
+
+.build-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.build-item {
+  background: linear-gradient(145deg, rgba(160, 32, 240, 0.2), rgba(57, 255, 20, 0.05));
+  border: 2px solid var(--shaco-purple);
+  padding: 1.5rem 1rem;
+  border-radius: 10px;
+  text-align: center;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.build-item:hover {
+  transform: translateY(-5px) rotate(-1deg);
+  border-color: var(--shaco-green);
+  box-shadow: 0 10px 30px rgba(57, 255, 20, 0.3);
+}
+
+.build-item .emoji {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.build-item strong {
+  display: block;
+  color: var(--shaco-green);
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.build-item small {
+  color: #aaa;
+  font-size: 0.85rem;
+}
+
+/* ============================================
+   COMBO (steps)
+   ============================================ */
+
+.combo {
+  max-width: 700px;
+  margin: 2rem auto;
+}
+
+.combo ol {
+  list-style: none;
+  counter-reset: step;
+}
+
+.combo li {
+  counter-increment: step;
+  padding: 1.2rem 1.2rem 1.2rem 4.5rem;
+  border-left: 4px solid var(--shaco-green);
+  margin: 1rem 0;
+  background: rgba(57, 255, 20, 0.05);
+  font-size: 1.15rem;
+  position: relative;
+  border-radius: 0 8px 8px 0;
+  transition: all 0.3s;
+}
+
+.combo li:hover {
+  background: rgba(57, 255, 20, 0.1);
+  transform: translateX(8px);
+}
+
+.combo li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--shaco-green);
+  color: #000;
+  width: 2.8rem;
+  height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-family: 'Rubik Mono One', monospace;
+  font-weight: bold;
+  font-size: 1.2rem;
+  box-shadow: 0 0 15px var(--shaco-green);
+}
+
+.combo li strong {
+  color: var(--shaco-acid);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+/* ============================================
+   QUOTES / MEMES
+   ============================================ */
+
+.quote {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border: 2px dashed var(--shaco-purple);
+  background: rgba(160, 32, 240, 0.05);
+  font-style: italic;
+  font-size: 1.3rem;
+  text-align: center;
+  position: relative;
+  border-radius: 12px;
+}
+
+.quote::before {
+  content: '"';
+  position: absolute;
+  top: -2rem;
+  left: 1rem;
+  font-size: 6rem;
+  color: var(--shaco-green);
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+.quote cite {
+  display: block;
+  margin-top: 1rem;
+  color: var(--shaco-acid);
+  font-size: 1rem;
+  font-family: 'VT323', monospace;
+  letter-spacing: 2px;
+}
+
+.meme-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+  list-style: none;
+}
+
+.meme-list li {
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid var(--shaco-green);
+  padding: 1.2rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.meme-list li:nth-child(even) { border-color: var(--shaco-purple); }
+
+.meme-list li:hover { transform: rotate(-1deg) scale(1.02); }
+
+.meme-list li strong {
+  display: block;
+  color: var(--shaco-acid);
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+  letter-spacing: 1px;
+}
+
+/* ============================================
+   FAQ
+   ============================================ */
+
+.faq {
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.faq details {
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--shaco-purple);
+  border-radius: 8px;
+  margin-bottom: 0.8rem;
+  padding: 1rem 1.2rem;
+  transition: border-color 0.3s;
+}
+
+.faq details[open] {
+  border-color: var(--shaco-green);
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+}
+
+.faq summary {
+  font-family: 'Rubik Mono One', monospace;
+  font-size: 1.05rem;
+  cursor: pointer;
+  color: var(--shaco-green);
+  list-style: none;
+  position: relative;
+  padding-right: 2rem;
+}
+
+.faq summary::-webkit-details-marker { display: none; }
+
+.faq summary::after {
+  content: '🃏';
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: transform 0.3s;
+}
+
+.faq details[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.faq details p {
+  margin-top: 0.8rem;
+  color: #ddd;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+footer {
+  text-align: center;
+  padding: 3rem 1rem 2rem;
+  border-top: 2px solid var(--shaco-purple);
+  margin-top: 4rem;
+  background: rgba(0, 0, 0, 0.7);
+  position: relative;
+  z-index: 1;
+}
+
+footer h3 {
+  font-size: 2rem;
+  color: var(--shaco-green);
+  text-shadow: 0 0 15px var(--shaco-green);
+  margin-bottom: 1rem;
+}
+
+footer p {
+  color: #888;
+  font-size: 0.9rem;
+  margin: 0.3rem auto;
+  max-width: 600px;
+}
+
+footer a {
+  color: var(--shaco-acid);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--shaco-acid);
+}
+
+footer a:hover {
+  color: var(--shaco-green);
+}
+
+footer .laugh {
+  font-family: 'Creepster', cursive;
+  font-size: 1.5rem;
+  color: var(--shaco-purple);
+  margin-top: 1.5rem;
+  letter-spacing: 4px;
+  animation: laugh-pulse 1s infinite;
+}
+
+@keyframes laugh-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* ============================================
+   EFEITOS DIVERSOS / UTILITÁRIOS
+   ============================================ */
+
+.warning {
+  background: linear-gradient(90deg, rgba(139, 0, 0, 0.4), rgba(160, 32, 240, 0.2));
+  border-left: 6px solid var(--shaco-blood);
+  padding: 1rem 1.5rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  border-radius: 4px;
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+}
+
+.warning::before {
+  content: '⚠️ ';
+  margin-right: 0.5rem;
+}
+
+.joke-badge {
+  display: inline-block;
+  background: var(--shaco-green);
+  color: #000;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-family: 'Rubik Mono One', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  transform: rotate(-3deg);
+  margin: 0 0.3rem;
+}
+
+.text-center { text-align: center; }
+.mt-3 { margin-top: 3rem; }
+.mb-3 { margin-bottom: 3rem; }
+
+/* ============================================
+   FLOATING ? (característica do Shaco)
+   ============================================ */
+
+.float-q {
+  position: fixed;
+  top: 15%;
+  left: 5%;
+  font-family: 'Creepster', cursive;
+  font-size: 8rem;
+  color: rgba(57, 255, 20, 0.1);
+  pointer-events: none;
+  z-index: 0;
+  animation: float-q 8s ease-in-out infinite;
+}
+
+.float-q:nth-of-type(2) {
+  top: 60%;
+  left: auto;
+  right: 8%;
+  animation-delay: 2s;
+  color: rgba(160, 32, 240, 0.1);
+}
+
+.float-q:nth-of-type(3) {
+  top: 35%;
+  left: 80%;
+  animation-delay: 4s;
+  font-size: 5rem;
+}
+
+@keyframes float-q {
+  0%, 100% { transform: translateY(0) rotate(-10deg); opacity: 0.4; }
+  50% { transform: translateY(-40px) rotate(10deg); opacity: 0.9; }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 640px) {
+  section { padding: 3rem 1rem; }
+  .hero__hero-gif { margin-top: 2rem; }
+  .gif-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+  .gif-grid img { height: 150px; }
+  .combo li { padding-left: 4rem; font-size: 1rem; }
+  .float-q { font-size: 4rem; }
+}
+
+/* ============================================
+   NO MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
