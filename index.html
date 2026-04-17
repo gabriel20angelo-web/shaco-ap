@@ -26,7 +26,10 @@
         Nenhum depoimento é <em>verificado</em>. <br />
         A piada <em>é com você</em>.
       </p>
-      <a href="#falas" class="hero__cta">✦ deixa a dor chegar ✦</a>
+      <div class="hero__cta-group">
+        <a href="#falas" class="hero__cta">✦ deixa a dor chegar ✦</a>
+        <button id="invocar" class="btn-ghost">🃏 invocar shaco</button>
+      </div>
       <img
         class="hero__hero-gif"
         src="https://media.tenor.com/X95_fOkzFOIAAAAM/shaco-honsementioned.gif"
@@ -79,6 +82,29 @@
       <div class="gif-solo">
         <img src="https://media.tenor.com/BT1t3WFaDSsAAAAM/i-jest-shaco.gif" alt="Shaco pixel art I jest" loading="lazy" />
       </div>
+    </section>
+
+    <!-- =================== CAIXINHAS =================== -->
+    <section id="caixinhas">
+      <h2>Caixinhas do <span>demônio</span></h2>
+      <p class="section__kicker">[ clique se tiver coragem. algumas são armadilha ]</p>
+
+      <div class="box-grid">
+        <button class="box" data-prize="🎁 +1500 dano psicológico. bem feito." aria-label="caixinha 1">🎁</button>
+        <button class="box" data-prize="💀 parabéns, você morreu. fantasma é o próximo level." data-effect="shake" aria-label="caixinha 2">🎁</button>
+        <button class="box" data-prize="🪦 era mimic. caíste igual todo adc iluminado." aria-label="caixinha 3">🎁</button>
+        <button class="box" data-prize="🧾 drop raro: um boleto. vencido ontem." aria-label="caixinha 4">🎁</button>
+        <button class="box" data-prize="🃏 coringa ativo. +30% de pirar no jogo." aria-label="caixinha 5">🎁</button>
+        <button class="box" data-prize="🐟 peixe morto. shaco ap não farma, pesca." aria-label="caixinha 6">🎁</button>
+        <button class="box" data-prize="🫥 vazio. como seu elo. sinto muito." aria-label="caixinha 7">🎁</button>
+        <button class="box" data-prize="📦 uma caixinha dentro de outra caixinha. 🥴" aria-label="caixinha 8">🎁</button>
+        <button class="box" data-prize="⚠ ISSO ERA UMA ARMADILHA. TARDE DEMAIS." data-effect="shake" aria-label="caixinha 9">🎁</button>
+        <button class="box" data-prize="🗡 backstab. não vi acontecer, mas senti." aria-label="caixinha 10">🎁</button>
+        <button class="box" data-prize="🎭 trocou de main. agora é yasuo. pior ainda." aria-label="caixinha 11">🎁</button>
+        <button class="box" data-prize="✨ +1 ward rosa. use com sabedoria. (não vai usar)" aria-label="caixinha 12">🎁</button>
+      </div>
+
+      <p class="box-output" aria-live="polite"></p>
     </section>
 
     <!-- =================== DEPOIMENTOS =================== -->
@@ -183,6 +209,15 @@
       </div>
     </section>
 
+    <!-- =================== PUXA UMA CARTA =================== -->
+    <section id="carta">
+      <h2>Puxa uma <span>carta</span></h2>
+      <p class="section__kicker">[ o futuro está nas mãos do palhaço. você não escolhe ]</p>
+
+      <button id="puxar-carta" class="btn-demon">🃏 puxar carta do baralho</button>
+      <div id="carta-output" class="carta-container"></div>
+    </section>
+
     <!-- =================== POESIA =================== -->
     <section id="poesia">
       <h2>Poesia <span>de boteco</span></h2>
@@ -261,6 +296,20 @@
       </div>
     </section>
 
+    <!-- =================== SLOT DA BUILD =================== -->
+    <section id="slot">
+      <h2>Slot <span>da build</span></h2>
+      <p class="section__kicker">[ uma máquina decide por você. a riot comprou esta ]</p>
+
+      <div class="slot-machine" aria-label="slot machine de build">
+        <div class="reel" id="reel-1">🔮 Arcano</div>
+        <div class="reel" id="reel-2">🌀 Caos</div>
+        <div class="reel" id="reel-3">👟 Boots</div>
+      </div>
+      <button id="spin-btn" class="btn-demon">🎰 girar build</button>
+      <p id="slot-result" class="slot-result"></p>
+    </section>
+
     <!-- =================== CLASSIFICADOS =================== -->
     <section id="classificados">
       <h2>Classificados <span>do demônio</span></h2>
@@ -295,6 +344,35 @@
 
       <div class="gif-solo">
         <img src="https://media.tenor.com/m0-ZQAVlx18AAAAM/shaco-robator.gif" alt="Shaco robator" loading="lazy" />
+      </div>
+    </section>
+
+    <!-- =================== SPELLS =================== -->
+    <section id="spells">
+      <h2>Habilidades <span>especiais</span></h2>
+      <p class="section__kicker">[ aperte os botões. aguente as consequências ]</p>
+
+      <div class="spell-buttons">
+        <button id="spell-deceive" class="btn-spell">
+          <span class="key">Q</span>
+          Deceive
+          <small>esconder tudo por 2s</small>
+        </button>
+        <button id="spell-backstab" class="btn-spell">
+          <span class="key">E</span>
+          Backstab
+          <small>girar o mundo inteiro</small>
+        </button>
+        <button id="spell-hallucinate" class="btn-spell">
+          <span class="key">R</span>
+          Hallucinate
+          <small>invocar clones na tela</small>
+        </button>
+        <button id="spell-jest" class="btn-spell">
+          <span class="key">J</span>
+          JEST!
+          <small>chuva de HAHAHA</small>
+        </button>
       </div>
     </section>
 
@@ -422,6 +500,14 @@
         Obrigado pela sua atenção. <br />
         A caixinha <em>sempre esteve</em> atrás de você.
       </p>
+
+      <div class="danger-zone">
+        <p style="font-family:'VT323',monospace;font-size:1.3rem;color:var(--shaco-acid);margin-bottom:1.5rem;">
+          último botão. o palhaço mandou <em>não clicar</em>.
+        </p>
+        <button id="nao-clique" class="btn-danger">⚠ NÃO CLIQUE AQUI ⚠</button>
+        <p id="click-counter" class="click-counter"></p>
+      </div>
     </section>
 
     <!-- =================== FOOTER =================== -->
@@ -445,11 +531,14 @@
   </main>
 
   <script>
-    // HA! ao clicar
+    const rand = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+    // ===== HA! flutuante ao clicar (não em botões interativos) =====
+    const clickMsgs = ['HA!', 'HAHA!', 'HAHAHA!', 'olha atrás', 'a piada é com você', 'só mais um pouquinho', 'truque!', '?', 'te peguei', 'não confia'];
     document.addEventListener('click', (e) => {
-      const msgs = ['HA!', 'HAHA!', 'HAHAHA!', 'olha atrás', 'a piada é com você', 'só mais um pouquinho', 'truque!', '?'];
+      if (e.target.closest('.box, .btn-demon, .btn-spell, .btn-ghost, .btn-danger, #spin-btn, #puxar-carta, #nao-clique, #invocar, summary, details, .hero__cta')) return;
       const t = document.createElement('span');
-      t.textContent = msgs[Math.floor(Math.random() * msgs.length)];
+      t.textContent = rand(clickMsgs);
       t.style.cssText = `
         position: fixed;
         left: ${e.clientX}px;
@@ -471,22 +560,244 @@
       setTimeout(() => t.remove(), 1200);
     });
 
-    // Konami code
-    const konami = [38,38,40,40,37,39,37,39,66,65];
-    let pos = 0;
-    document.addEventListener('keydown', (e) => {
-      if (e.keyCode === konami[pos]) {
-        pos++;
-        if (pos === konami.length) {
-          document.body.style.animation = 'glitch 0.15s infinite';
-          alert('🃏 VOCÊ ENCONTROU O CLONE. A PIADA ERA COM VOCÊ O TEMPO TODO. 🃏');
-          setTimeout(() => { document.body.style.animation = ''; }, 100);
-          pos = 0;
+    // ===== CAIXINHAS =====
+    const boxOutput = document.querySelector('.box-output');
+    document.querySelectorAll('.box').forEach(box => {
+      box.addEventListener('click', () => {
+        box.classList.add('opened');
+        box.textContent = '🃏';
+        boxOutput.textContent = box.dataset.prize;
+        boxOutput.classList.remove('show');
+        void boxOutput.offsetWidth;
+        boxOutput.classList.add('show');
+        if (box.dataset.effect === 'shake') {
+          document.body.classList.add('shaken');
+          setTimeout(() => document.body.classList.remove('shaken'), 500);
         }
-      } else {
-        pos = 0;
+        setTimeout(() => {
+          box.classList.remove('opened');
+          box.textContent = '🎁';
+        }, 4000);
+      });
+    });
+
+    // ===== PUXA CARTA =====
+    const cartas = [
+      "Seu próximo jogo vai ter Shaco no inimigo. Sinto muito.",
+      "Você vai comprar Malmortius. Era pra comprar Banshee. Paciência.",
+      "A caixinha que você pisou era do Shaco ALIADO. Não ajudou.",
+      "O clone era o real. Você bateu no real. Que ia te matar mesmo.",
+      "Você vai clonar no Nexus inimigo e rir. Sua vida vai melhorar.",
+      "Hoje é dia de ranqueada. Volta amanhã. Por favor.",
+      "O ADC inimigo é seu ex. Boa sorte nisso.",
+      "Shaco AP é o caminho. O caminho é escorregadio e mal iluminado.",
+      "O Baiano vai comentar sua gameplay. Não vai ser bonito.",
+      "Seu jungler é 0/4. Mas tem 14 farm. Ele tá se esforçando.",
+      "A ward que você colocou tá no tribo errado desde o início.",
+      "Você vai ler esta carta, achar graça, e perder mesmo assim.",
+      "Parabéns. Você tirou Shaco main. Não tem mais volta.",
+      "Seu support comprou Redenção contra time full AP. Respira fundo.",
+      "O inimigo tem Teemo, Fiddle e Shaco. Só entra se quiser sofrer.",
+      "A Riot vai nerfar o E do Shaco. Daqui a 4 patches. Aguenta.",
+      "Você vai ver um Shaco farmando krug. É armadilha. Corre.",
+      "Hoje o jogo trava no loading. É o universo te salvando."
+    ];
+    let cartaCount = 0;
+    document.getElementById('puxar-carta')?.addEventListener('click', () => {
+      cartaCount++;
+      const out = document.getElementById('carta-output');
+      out.innerHTML = '';
+      const div = document.createElement('div');
+      div.className = 'carta';
+      div.setAttribute('data-num', '#' + String(cartaCount).padStart(3, '0'));
+      div.textContent = rand(cartas);
+      out.appendChild(div);
+    });
+
+    // ===== SLOT MACHINE =====
+    const slotItems = {
+      1: ['🔮 Arcano', '🎩 Rabadon', '🌙 Luden', '🦷 Nashor', '💀 Malignance', '🔥 Shadowflame', '🧙 Liandry', '⚡ Stormsurge'],
+      2: ['🌀 Caos', '📜 Divórcio', '🧾 Boleto', '🎁 47 Caixinhas', '🕊 Paz de Espírito', '🫠 Pânico', '🎭 Trauma', '💀 Vazio'],
+      3: ['👟 Boots', '⏳ Zhonya', '🪄 Varinha', '🧹 Vassoura', '🚗 Carro Velho', '🦠 Void', '🔮 Banshee', '💎 Morellonomicon']
+    };
+    const slotReactions = [
+      '✨ CARRY GARANTIDO ✨',
+      '🔔 RITO NERFA ISSO',
+      '👑 META DEFINIDA',
+      '😈 O PALHAÇO APROVA',
+      '🤡 TROLL PICK CONFIRMADO',
+      '💀 VOCÊ FOI DEMITIDO',
+      '📉 REPORTA VOCÊ MESMO',
+      '✌ ELO FICA',
+      '🎯 NÃO ERRA UM',
+      '🚨 HOTFIX NECESSÁRIO'
+    ];
+    document.getElementById('spin-btn')?.addEventListener('click', () => {
+      const result = document.getElementById('slot-result');
+      result.classList.remove('show');
+      result.textContent = '';
+      [1, 2, 3].forEach((i) => {
+        const reel = document.getElementById('reel-' + i);
+        reel.classList.add('spinning');
+        let ticks = 0;
+        const maxTicks = 12 + i * 5;
+        const interval = setInterval(() => {
+          reel.textContent = rand(slotItems[i]);
+          ticks++;
+          if (ticks >= maxTicks) {
+            clearInterval(interval);
+            reel.classList.remove('spinning');
+            if (i === 3) {
+              setTimeout(() => {
+                result.textContent = rand(slotReactions);
+                result.classList.add('show');
+              }, 200);
+            }
+          }
+        }, 80);
+      });
+    });
+
+    // ===== SPELLS =====
+    function cooldown(btn, ms) {
+      btn.classList.add('cooldown');
+      setTimeout(() => btn.classList.remove('cooldown'), ms);
+    }
+
+    document.getElementById('spell-deceive')?.addEventListener('click', (e) => {
+      document.body.classList.add('deceive');
+      setTimeout(() => document.body.classList.remove('deceive'), 2000);
+      cooldown(e.currentTarget, 2500);
+    });
+
+    document.getElementById('spell-backstab')?.addEventListener('click', (e) => {
+      document.body.classList.add('backstab');
+      setTimeout(() => document.body.classList.remove('backstab'), 1400);
+      cooldown(e.currentTarget, 1800);
+    });
+
+    function spawnClones(src, count) {
+      for (let i = 0; i < count; i++) {
+        const c = document.createElement('img');
+        c.src = src;
+        c.className = 'clone-overlay';
+        c.style.left = Math.random() * 85 + '%';
+        c.style.top = (10 + Math.random() * 75) + '%';
+        document.body.appendChild(c);
+        setTimeout(() => {
+          c.style.transition = 'all 0.4s';
+          c.style.opacity = '0';
+          c.style.transform = 'scale(0) rotate(360deg)';
+        }, 2500 + i * 250);
+        setTimeout(() => c.remove(), 3500 + i * 250);
+      }
+    }
+
+    document.getElementById('spell-hallucinate')?.addEventListener('click', (e) => {
+      spawnClones('https://media.tenor.com/yeR2U7TIIvMAAAAM/shaco-q-league-of-legends.gif', 6);
+      cooldown(e.currentTarget, 4000);
+    });
+
+    function rainHA(count, speedMs) {
+      const frases = ['HA!', 'HAHA!', 'HAHAHA!', '🃏', 'HA HA HA'];
+      for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+          const t = document.createElement('span');
+          t.textContent = rand(frases);
+          t.className = 'rain-ha';
+          t.style.left = Math.random() * 100 + '%';
+          t.style.fontSize = (1 + Math.random() * 2.5) + 'rem';
+          t.style.animationDuration = (2 + Math.random() * 2) + 's';
+          t.style.color = Math.random() > 0.5 ? '#39ff14' : '#a020f0';
+          document.body.appendChild(t);
+          setTimeout(() => t.remove(), 4500);
+        }, i * speedMs);
+      }
+    }
+
+    document.getElementById('spell-jest')?.addEventListener('click', (e) => {
+      rainHA(40, 60);
+      cooldown(e.currentTarget, 3000);
+    });
+
+    // ===== INVOCAR SHACO (hero) =====
+    document.getElementById('invocar')?.addEventListener('click', () => {
+      document.body.classList.add('shaken');
+      setTimeout(() => document.body.classList.remove('shaken'), 500);
+      spawnClones('https://media.tenor.com/X95_fOkzFOIAAAAM/shaco-honsementioned.gif', 4);
+      rainHA(20, 80);
+    });
+
+    // ===== NÃO CLIQUE =====
+    let clickCount = 0;
+    const naoCliqueMsgs = [
+      '🃏 eu avisei.',
+      '🃏 você clicou. previsível.',
+      '🃏 olha o que você fez.',
+      '🃏 isso vai pro report.',
+      '🃏 você clicou DE NOVO?',
+      '🃏 tá feliz agora?',
+      '🃏 boa sorte dormindo.',
+      '🃏 o palhaço anotou seu nome.',
+      '🃏 você é o alvo agora.',
+      '🃏 HAHAHAHAHAHA'
+    ];
+    document.getElementById('nao-clique')?.addEventListener('click', () => {
+      clickCount++;
+      document.getElementById('click-counter').textContent =
+        'cliques: ' + clickCount + ' · o palhaço tá rindo de você ' + clickCount + 'x mais';
+      rainHA(60, 40);
+      document.body.classList.add('shaken');
+      setTimeout(() => document.body.classList.remove('shaken'), 500);
+      if (clickCount === 1 || clickCount % 3 === 0) {
+        setTimeout(() => alert(rand(naoCliqueMsgs)), 400);
       }
     });
+
+    // ===== Konami code =====
+    const konami = [38,38,40,40,37,39,37,39,66,65];
+    let kpos = 0;
+    document.addEventListener('keydown', (e) => {
+      if (e.keyCode === konami[kpos]) {
+        kpos++;
+        if (kpos === konami.length) {
+          alert('🃏 VOCÊ ENCONTROU O CLONE. A PIADA ERA COM VOCÊ O TEMPO TODO. 🃏');
+          document.getElementById('spell-hallucinate')?.click();
+          document.getElementById('spell-jest')?.click();
+          kpos = 0;
+        }
+      } else {
+        kpos = 0;
+      }
+    });
+
+    // ===== Notificação surpresa após 15s =====
+    setTimeout(() => {
+      const s = document.createElement('div');
+      s.textContent = '👀 alguém está te observando';
+      s.style.cssText = `
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        background: #000;
+        border: 2px solid #39ff14;
+        color: #caff00;
+        padding: 0.8rem 1.2rem;
+        font-family: 'VT323', monospace;
+        font-size: 1rem;
+        border-radius: 8px;
+        z-index: 9998;
+        animation: pop-text 0.6s;
+        cursor: pointer;
+        box-shadow: 0 0 20px #a020f0;
+      `;
+      s.addEventListener('click', () => {
+        s.remove();
+        rainHA(15, 80);
+      });
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 7000);
+    }, 12000);
   </script>
 </body>
 </html>
