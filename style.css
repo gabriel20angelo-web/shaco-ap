@@ -1755,3 +1755,431 @@ footer a:hover { color: var(--shaco-green); }
   .welcome-box { --size: clamp(160px, 60vw, 220px); }
   .welcome-prize-gif { width: clamp(180px, 60vw, 260px); height: clamp(180px, 60vw, 260px); }
 }
+
+/* ==========================================================
+   INVIS SHACOS — palhaços saindo da invisibilidade
+   ========================================================== */
+
+#invis-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.invis-shaco {
+  --size: 120px;
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  filter: drop-shadow(0 0 24px rgba(57, 255, 20, 0.55));
+}
+
+.invis-shimmer {
+  position: absolute;
+  inset: -25%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, rgba(57, 255, 20, 0.55) 0%, rgba(160, 32, 240, 0.35) 35%, transparent 70%);
+  opacity: 0;
+  animation: invis-shimmer 1.4s ease-out forwards;
+  filter: blur(6px);
+}
+
+.invis-shimmer::before,
+.invis-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--shaco-green);
+  opacity: 0;
+  animation: invis-ring 1.6s ease-out forwards;
+}
+
+.invis-shimmer::after {
+  border-color: var(--shaco-purple);
+  animation-delay: 0.18s;
+}
+
+@keyframes invis-shimmer {
+  0%   { opacity: 0; transform: scale(0.2); }
+  35%  { opacity: 0.85; transform: scale(1); }
+  70%  { opacity: 0.55; transform: scale(1.05); }
+  100% { opacity: 0; transform: scale(1.2); }
+}
+
+@keyframes invis-ring {
+  0%   { opacity: 0.9; transform: scale(0.15); border-width: 4px; }
+  60%  { opacity: 0.6; transform: scale(1.4); border-width: 2px; }
+  100% { opacity: 0; transform: scale(2.2); border-width: 1px; }
+}
+
+.invis-eyes {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 18%;
+  width: 60%;
+  justify-content: center;
+  opacity: 0;
+  animation: invis-eyes 2.6s ease-in-out forwards;
+}
+
+.invis-eyes span {
+  width: 14%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, #fff 0%, var(--shaco-green) 40%, transparent 75%);
+  border-radius: 50%;
+  filter: blur(0.5px);
+  box-shadow: 0 0 18px var(--shaco-green), 0 0 32px var(--shaco-green);
+}
+
+@keyframes invis-eyes {
+  0%   { opacity: 0; }
+  18%  { opacity: 1; }
+  35%  { opacity: 0.9; }
+  55%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+.invis-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.4) rotate(-8deg);
+  animation: invis-materialize 3.2s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
+  mix-blend-mode: screen;
+}
+
+@keyframes invis-materialize {
+  0%   { opacity: 0; transform: scale(0.35) rotate(-12deg); filter: hue-rotate(120deg) brightness(2.4) blur(8px); }
+  20%  { opacity: 0.4; transform: scale(0.7) rotate(-4deg); filter: hue-rotate(80deg) brightness(1.6) blur(4px); }
+  40%  { opacity: 1; transform: scale(1.05) rotate(2deg); filter: hue-rotate(0deg) brightness(1.1) blur(0); }
+  70%  { opacity: 1; transform: scale(1) rotate(-2deg); filter: none; }
+  85%  { opacity: 0.85; transform: scale(1.1) rotate(4deg); filter: hue-rotate(110deg) brightness(1.4) blur(2px); }
+  100% { opacity: 0; transform: scale(1.6) rotate(20deg); filter: hue-rotate(120deg) brightness(2) blur(10px); }
+}
+
+.invis-ha {
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Creepster', cursive;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  color: var(--shaco-green);
+  text-shadow: 0 0 12px var(--shaco-purple), 0 0 22px var(--shaco-green);
+  white-space: nowrap;
+  opacity: 0;
+  animation: invis-ha 2.4s ease-out 0.6s forwards;
+  letter-spacing: 2px;
+}
+
+@keyframes invis-ha {
+  0%   { opacity: 0; transform: translate(-50%, 20px) scale(0.6); }
+  25%  { opacity: 1; transform: translate(-50%, -10px) scale(1.1); }
+  60%  { opacity: 1; transform: translate(-50%, -30px) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -90px) scale(0.8); }
+}
+
+.invis-smoke {
+  position: absolute;
+  inset: -20%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(57, 255, 20, 0.6), transparent 55%),
+    radial-gradient(circle at 70% 70%, rgba(160, 32, 240, 0.4), transparent 55%),
+    radial-gradient(circle at 50% 80%, rgba(57, 255, 20, 0.3), transparent 50%);
+  opacity: 0;
+  pointer-events: none;
+  filter: blur(10px);
+  animation: invis-smoke 1.4s ease-out 1.7s forwards;
+}
+
+@keyframes invis-smoke {
+  0%   { opacity: 0; transform: scale(0.6); }
+  40%  { opacity: 0.9; transform: scale(1.2) translateY(-10%); }
+  100% { opacity: 0; transform: scale(1.8) translateY(-40%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invis-shaco { display: none; }
+}
+
+/* ==========================================================
+   TIGRINHO — slot machine palhaço-asiático do Shaco
+   ========================================================== */
+
+.tigrinho-section {
+  max-width: 920px;
+  margin: 3rem auto 4rem;
+  padding: 2rem 1.5rem 2.5rem;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255, 215, 0, 0.18) 0%, transparent 55%),
+    radial-gradient(circle at 80% 90%, rgba(139, 0, 0, 0.35) 0%, transparent 55%),
+    linear-gradient(160deg, #1a0506 0%, #2a0a08 60%, #1a0010 100%);
+  border: 2px solid #d4af37;
+  box-shadow:
+    0 0 0 4px #1a0506 inset,
+    0 0 0 5px #8b0000 inset,
+    0 12px 50px rgba(212, 175, 55, 0.35),
+    0 0 80px rgba(139, 0, 0, 0.45);
+  position: relative;
+  overflow: hidden;
+}
+
+.tigrinho-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(45deg, transparent 0 18px, rgba(212, 175, 55, 0.05) 18px 19px),
+    repeating-linear-gradient(-45deg, transparent 0 18px, rgba(139, 0, 0, 0.05) 18px 19px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.tigrinho-section > * { position: relative; z-index: 1; }
+
+.tigrinho-title {
+  text-align: center;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  color: #ffd700;
+  text-shadow:
+    0 0 8px #d4af37,
+    0 0 18px #8b0000,
+    3px 3px 0 #1a0506;
+  letter-spacing: 4px;
+  margin-bottom: 0.4rem;
+}
+
+.tigrinho-title span {
+  color: var(--shaco-green);
+  text-shadow: 0 0 10px var(--shaco-green), 2px 2px 0 #000;
+  font-style: italic;
+}
+
+.tigrinho-sub {
+  text-align: center;
+  font-family: 'VT323', monospace;
+  color: #ffd700;
+  font-size: 1.05rem;
+  letter-spacing: 2px;
+  opacity: 0.9;
+  margin-bottom: 1.4rem;
+}
+
+.tigrinho-mascot {
+  width: clamp(110px, 22vw, 170px);
+  aspect-ratio: 1;
+  margin: 0 auto 1rem;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #ffd700;
+  box-shadow:
+    0 0 0 3px #8b0000,
+    0 0 30px rgba(255, 215, 0, 0.7),
+    0 0 50px rgba(57, 255, 20, 0.4) inset;
+  background: radial-gradient(circle, #ffd700 0%, #8b0000 70%, #1a0506 100%);
+  animation: tigrinho-pulse 2.4s ease-in-out infinite;
+}
+
+.tigrinho-mascot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: screen;
+}
+
+.tigrinho-mascot::after {
+  content: '🐯';
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  filter: drop-shadow(0 0 6px #ffd700);
+  animation: tigrinho-bounce 1.6s ease-in-out infinite;
+}
+
+@keyframes tigrinho-pulse {
+  0%, 100% { box-shadow: 0 0 0 3px #8b0000, 0 0 30px rgba(255, 215, 0, 0.7), 0 0 50px rgba(57, 255, 20, 0.4) inset; }
+  50%      { box-shadow: 0 0 0 3px #8b0000, 0 0 50px rgba(255, 215, 0, 1), 0 0 80px rgba(57, 255, 20, 0.6) inset; }
+}
+
+@keyframes tigrinho-bounce {
+  0%, 100% { transform: translateY(0) rotate(-8deg); }
+  50%      { transform: translateY(-6px) rotate(8deg); }
+}
+
+.tigrinho-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  max-width: 380px;
+  margin: 0 auto 1.2rem;
+  padding: 12px;
+  background: linear-gradient(180deg, #0a0306 0%, #1a0506 100%);
+  border: 3px solid #d4af37;
+  border-radius: 16px;
+  box-shadow:
+    inset 0 0 22px rgba(0, 0, 0, 0.85),
+    0 0 0 2px #8b0000 inset,
+    0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.tigrinho-cell {
+  aspect-ratio: 1;
+  background: radial-gradient(circle, #2a0a08 0%, #0a0306 100%);
+  border: 2px solid rgba(212, 175, 55, 0.55);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  color: #ffd700;
+  text-shadow: 0 0 10px #ffd700, 0 0 20px #8b0000;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+
+.tigrinho-cell.spinning {
+  animation: tigrinho-spin 0.08s linear infinite;
+}
+
+@keyframes tigrinho-spin {
+  0%   { transform: translateY(-6px); filter: blur(2px); }
+  50%  { transform: translateY(0);    filter: blur(2px); }
+  100% { transform: translateY(6px);  filter: blur(2px); }
+}
+
+.tigrinho-cell.win {
+  animation: tigrinho-win 0.6s ease-out infinite;
+  border-color: var(--shaco-green);
+  box-shadow:
+    0 0 18px var(--shaco-green),
+    0 0 32px #ffd700,
+    inset 0 0 14px rgba(57, 255, 20, 0.4);
+}
+
+@keyframes tigrinho-win {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.12) rotate(2deg); }
+}
+
+.tigrinho-cell.loss {
+  opacity: 0.6;
+  filter: grayscale(0.6);
+}
+
+.tigrinho-spin-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 0.9rem 2.2rem;
+  font-family: 'Creepster', cursive;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  letter-spacing: 3px;
+  color: #1a0506;
+  background: linear-gradient(180deg, #ffd700 0%, #d4af37 60%, #8b6914 100%);
+  border: 3px solid #1a0506;
+  border-radius: 999px;
+  box-shadow:
+    0 4px 0 #5a4408,
+    0 0 24px rgba(255, 215, 0, 0.7),
+    inset 0 2px 0 rgba(255, 255, 255, 0.4);
+  cursor: inherit;
+  transition: transform 0.12s, box-shadow 0.12s;
+  text-transform: uppercase;
+}
+
+.tigrinho-spin-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 0 #5a4408,
+    0 0 32px rgba(255, 215, 0, 0.95),
+    inset 0 2px 0 rgba(255, 255, 255, 0.5);
+}
+
+.tigrinho-spin-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #5a4408, 0 0 18px rgba(255, 215, 0, 0.7);
+}
+
+.tigrinho-spin-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  filter: grayscale(0.5);
+}
+
+.tigrinho-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.4rem;
+  margin: 1rem auto 0.6rem;
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  color: #ffd700;
+  letter-spacing: 1px;
+}
+
+.tigrinho-stats b { color: var(--shaco-green); text-shadow: 0 0 8px var(--shaco-green); font-weight: normal; }
+
+.tigrinho-result {
+  text-align: center;
+  margin-top: 1rem;
+  min-height: 2.4rem;
+  font-family: 'Creepster', cursive;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  letter-spacing: 2px;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tigrinho-result.show { opacity: 1; }
+
+.tigrinho-result.big-win {
+  color: var(--shaco-green);
+  text-shadow: 0 0 14px var(--shaco-green), 0 0 28px #ffd700;
+  animation: tigrinho-bigwin 0.7s ease-out infinite;
+}
+
+.tigrinho-result.lose {
+  color: var(--shaco-blood);
+  text-shadow: 0 0 10px var(--shaco-blood);
+}
+
+@keyframes tigrinho-bigwin {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.08); }
+}
+
+.tigrinho-foot {
+  text-align: center;
+  margin-top: 0.8rem;
+  font-family: 'VT323', monospace;
+  color: #d4af37;
+  opacity: 0.7;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 500px) {
+  .tigrinho-section { margin: 2rem 0.6rem 3rem; padding: 1.4rem 0.8rem 2rem; }
+  .tigrinho-grid { gap: 5px; padding: 8px; }
+  .tigrinho-stats { gap: 0.8rem; font-size: 1rem; }
+}

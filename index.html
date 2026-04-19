@@ -100,6 +100,40 @@
     <div id="chaos" class="chaos-grid" aria-live="polite"></div>
     <p class="box-output" aria-live="polite"></p>
 
+    <!-- ======== TIGRINHO DO SHACO ======== -->
+    <section id="tigrinho" class="tigrinho-section">
+      <h2 class="tigrinho-title">🐯 tigrinho <span>do shaco</span></h2>
+      <p class="tigrinho-sub">★ jogo do palhaço · paga em trauma · responsável demais ★</p>
+
+      <div class="tigrinho-mascot" aria-hidden="true">
+        <img src="https://media.tenor.com/NBLyuTxv0A0AAAAM/shaco-bong.gif" alt="" loading="lazy" />
+      </div>
+
+      <div id="tigrinho-grid" class="tigrinho-grid" aria-label="slot do tigrinho">
+        <div class="tigrinho-cell">🃏</div>
+        <div class="tigrinho-cell">🗡</div>
+        <div class="tigrinho-cell">🎁</div>
+        <div class="tigrinho-cell">🎯</div>
+        <div class="tigrinho-cell">👁</div>
+        <div class="tigrinho-cell">💀</div>
+        <div class="tigrinho-cell">🐯</div>
+        <div class="tigrinho-cell">🎲</div>
+        <div class="tigrinho-cell">🃏</div>
+      </div>
+
+      <button id="tigrinho-spin" class="tigrinho-spin-btn">🐯 GIRAR · R$ 2,50</button>
+
+      <div class="tigrinho-stats">
+        <span>saldo: <b id="tig-saldo">R$ 100,00</b></span>
+        <span>giros: <b id="tig-giros">0</b></span>
+        <span>maior: <b id="tig-best">R$ 0,00</b></span>
+      </div>
+
+      <p id="tigrinho-result" class="tigrinho-result" aria-live="polite"></p>
+
+      <p class="tigrinho-foot">⚠ jogue com responsabilidade. ou não. o palhaço não liga.</p>
+    </section>
+
     <footer>
       <p><em>site feito de raiva e gifs roubados.</em> league of legends pertence à riot games. o trauma pertence a você.</p>
       <p><a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">voltar ao mato</a> · <a href="https://github.com/gabriel20angelo-web/shaco-ap" target="_blank" rel="noopener">código</a></p>
@@ -109,6 +143,7 @@
 
   <script src="./audio.js"></script>
   <script src="./particles.js"></script>
+  <script src="./invis-shacos.js" defer></script>
   <script src="https://unpkg.com/three@0.160.0/build/three.min.js" defer></script>
   <script src="./hero-shaco.js" defer></script>
 
@@ -796,10 +831,12 @@
         setTimeout(() => document.body.classList.remove('shaken'), 500);
         spawnClones('https://media.tenor.com/X95_fOkzFOIAAAAM/shaco-honsementioned.gif', 4);
         window.HeroShaco?.spawnClones(5);
+        window.InvisShacos?.burst(4);
         rainHA(20, 80);
         A()?.laugh();
         return;
       }
+      if (e.target.closest('#tigrinho-spin')) { spinTigrinho(); return; }
       if (e.target.closest('#namegen-btn')) {
         const out = document.getElementById('namegen-out');
         if (out) {
@@ -910,9 +947,201 @@
       if (box && !welcomeOpened) box.classList.add('impatient');
     }, 3500);
 
+    // ============ TIGRINHO DO SHACO ============
+
+    const TIG_SYMBOLS = [
+      { s: '🃏', w: 18, payout: 30 },   // palhaço — top tier
+      { s: '🐯', w: 12, payout: 50 },   // tigrinho — JACKPOT (raro)
+      { s: '🎁', w: 22, payout: 12 },
+      { s: '🗡', w: 25, payout: 8 },
+      { s: '👁', w: 22, payout: 10 },
+      { s: '🎯', w: 25, payout: 6 },
+      { s: '💀', w: 22, payout: 8 },
+      { s: '🎲', w: 30, payout: 4 },
+      { s: '🪦', w: 30, payout: 4 }
+    ];
+    const TIG_BET = 2.5;
+    const TIG_KEY = 'shaco-tigrinho';
+
+    const TIG_LOSS_MSGS = [
+      '💀 tigrinho mostrou pena. NADA.',
+      '🤡 a casa SEMPRE ganha.',
+      '🪦 RIP R$ 2,50.',
+      '👀 ele riu. dá pra ouvir?',
+      '📉 -2,50. mas você volta.',
+      '🃏 misclick. de novo.',
+      '⚠ era pra ter parado faz 6 giros.',
+      '🐯 o tigre não é seu amigo.',
+      '🎲 rolou 1 natural. game over.',
+      '💸 essa era pra comprar pão.'
+    ];
+    const TIG_NEAR_MSGS = [
+      '😐 quase. quase é nada.',
+      '🥴 dois iguais. e daí?',
+      '🃏 tava tão perto.',
+      '👁 ele te enrolou.'
+    ];
+
+    function tigPickSymbol() {
+      const total = TIG_SYMBOLS.reduce((a, b) => a + b.w, 0);
+      let r = Math.random() * total;
+      for (const sym of TIG_SYMBOLS) {
+        r -= sym.w;
+        if (r <= 0) return sym;
+      }
+      return TIG_SYMBOLS[0];
+    }
+
+    function tigState() {
+      try {
+        const raw = localStorage.getItem(TIG_KEY);
+        if (!raw) return { saldo: 100, giros: 0, best: 0 };
+        const obj = JSON.parse(raw);
+        return { saldo: obj.saldo ?? 100, giros: obj.giros ?? 0, best: obj.best ?? 0 };
+      } catch { return { saldo: 100, giros: 0, best: 0 }; }
+    }
+
+    function tigSave(s) {
+      try { localStorage.setItem(TIG_KEY, JSON.stringify(s)); } catch {}
+    }
+
+    function tigUpdateHud(s) {
+      const sd = document.getElementById('tig-saldo');
+      const gr = document.getElementById('tig-giros');
+      const bs = document.getElementById('tig-best');
+      if (sd) sd.textContent = 'R$ ' + s.saldo.toFixed(2).replace('.', ',');
+      if (gr) gr.textContent = s.giros;
+      if (bs) bs.textContent = 'R$ ' + s.best.toFixed(2).replace('.', ',');
+    }
+
+    let tigSpinning = false;
+
+    function spinTigrinho() {
+      if (tigSpinning) return;
+      const grid = document.getElementById('tigrinho-grid');
+      const btn = document.getElementById('tigrinho-spin');
+      const result = document.getElementById('tigrinho-result');
+      if (!grid || !btn || !result) return;
+      const cells = Array.from(grid.querySelectorAll('.tigrinho-cell'));
+      if (cells.length !== 9) return;
+
+      let s = tigState();
+      if (s.saldo < TIG_BET) {
+        result.className = 'tigrinho-result show lose';
+        result.textContent = '💸 saldo zerado. recarregue (não dá).';
+        // recarrega de graça pra não travar a brincadeira
+        s.saldo = 100;
+        tigSave(s);
+        tigUpdateHud(s);
+        return;
+      }
+
+      tigSpinning = true;
+      btn.disabled = true;
+      s.saldo -= TIG_BET;
+      s.giros += 1;
+      tigUpdateHud(s);
+
+      result.classList.remove('show', 'big-win', 'lose');
+      cells.forEach(c => c.classList.remove('win', 'loss'));
+      A()?.slot?.();
+
+      // anima cada coluna parando em sequência (estilo Fortune Tiger)
+      const finalSyms = Array.from({ length: 9 }, () => tigPickSymbol());
+
+      cells.forEach(c => {
+        c.classList.add('spinning');
+        const tickers = setInterval(() => {
+          c.textContent = tigPickSymbol().s;
+        }, 70);
+        c._ticker = tickers;
+      });
+
+      // Para coluna 1 (índices 0,3,6) → 2 (1,4,7) → 3 (2,5,8)
+      const stopCol = (col, when) => setTimeout(() => {
+        [0, 3, 6].forEach(row => {
+          const idx = row + col;
+          const cell = cells[idx];
+          clearInterval(cell._ticker);
+          cell.classList.remove('spinning');
+          cell.textContent = finalSyms[idx].s;
+        });
+        A()?.card?.();
+        if (col === 2) finishTigrinho(cells, finalSyms, s, btn, result);
+      }, when);
+
+      stopCol(0, 700);
+      stopCol(1, 1100);
+      stopCol(2, 1500);
+    }
+
+    function finishTigrinho(cells, finalSyms, s, btn, result) {
+      // checa linhas (3 horizontais + 2 diagonais)
+      const lines = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 4, 8], [2, 4, 6]
+      ];
+      let wonAmount = 0;
+      const winningCells = new Set();
+      let bestSymbol = null;
+
+      lines.forEach(line => {
+        const [a, b, c] = line;
+        const sa = finalSyms[a].s, sb = finalSyms[b].s, sc = finalSyms[c].s;
+        if (sa === sb && sb === sc) {
+          const payout = finalSyms[a].payout * TIG_BET;
+          wonAmount += payout;
+          line.forEach(i => winningCells.add(i));
+          if (!bestSymbol || finalSyms[a].payout > bestSymbol.payout) bestSymbol = finalSyms[a];
+        }
+      });
+
+      cells.forEach((c, i) => {
+        if (winningCells.has(i)) c.classList.add('win');
+        else c.classList.add('loss');
+      });
+
+      if (wonAmount > 0) {
+        s.saldo += wonAmount;
+        if (wonAmount > s.best) s.best = wonAmount;
+        const isJackpot = bestSymbol?.s === '🐯';
+        const isPalhaco = bestSymbol?.s === '🃏';
+        const cls = wonAmount >= 30 ? 'big-win' : '';
+        let msg;
+        if (isJackpot) msg = `🐯 TIGRINHO PAGOU!!! +R$ ${wonAmount.toFixed(2).replace('.', ',')} 🤑`;
+        else if (isPalhaco) msg = `🃏 PALHAÇO TRÍPLO! +R$ ${wonAmount.toFixed(2).replace('.', ',')}`;
+        else msg = `✨ pagou +R$ ${wonAmount.toFixed(2).replace('.', ',')}`;
+        result.textContent = msg;
+        result.className = 'tigrinho-result show ' + cls;
+        A()?.crit?.();
+        if (isJackpot) {
+          rainHA(40, 50);
+          window.InvisShacos?.burst?.(3);
+          setTimeout(() => A()?.laugh?.(), 200);
+        }
+      } else {
+        // detecta near-miss (2 iguais em alguma linha)
+        let nearMiss = false;
+        lines.forEach(line => {
+          const counts = {};
+          line.forEach(i => counts[finalSyms[i].s] = (counts[finalSyms[i].s] || 0) + 1);
+          if (Object.values(counts).some(v => v === 2)) nearMiss = true;
+        });
+        result.textContent = rand(nearMiss ? TIG_NEAR_MSGS : TIG_LOSS_MSGS);
+        result.className = 'tigrinho-result show lose';
+        A()?.miss?.();
+      }
+
+      tigSave(s);
+      tigUpdateHud(s);
+      tigSpinning = false;
+      btn.disabled = false;
+    }
+
     // Bootstrap
     renderChaos();
     renderMemory();
+    tigUpdateHud(tigState());
   </script>
 </body>
 </html>
