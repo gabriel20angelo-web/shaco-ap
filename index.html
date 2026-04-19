@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SHACO É AP — fragmentos desordenados</title>
-  <meta name="description" content="Site-colagem com 80+ cards caoticos sobre o Shaco AP: piadas, caixinhas, gifs, depoimentos, spells. Embaralha a cada clique." />
+  <title>SHACO É AP — abre a caixinha</title>
+  <meta name="description" content="Site só de gifs e interatividade caótica do Shaco AP: caixinha surpresa, memory game, slot, cartas e mais." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='85'%3E🃏%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,34 +12,97 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- ======== WELCOME MODAL: caixinha surpresa ======== -->
+  <div id="welcome" class="welcome-modal" aria-hidden="false" role="dialog">
+    <button class="welcome-close" id="welcome-skip" aria-label="pular" title="pular">×</button>
+
+    <div class="welcome-stage" id="welcome-stage">
+      <p class="welcome-eyebrow"><span>★</span> caixinha pra você <span>★</span></p>
+      <p class="welcome-sub">alguém deixou isso na sua porta. <em>não tem remetente.</em></p>
+
+      <button class="welcome-box" id="welcome-box" aria-label="abrir caixinha">
+        <div class="wb-shadow"></div>
+        <div class="wb-bow">🎀</div>
+        <div class="wb-lid">
+          <div class="wb-lid-side wb-lid-front"></div>
+          <div class="wb-lid-side wb-lid-back"></div>
+          <div class="wb-lid-side wb-lid-left"></div>
+          <div class="wb-lid-side wb-lid-right"></div>
+          <div class="wb-lid-side wb-lid-top"></div>
+        </div>
+        <div class="wb-body">
+          <div class="wb-side wb-front"></div>
+          <div class="wb-side wb-back"></div>
+          <div class="wb-side wb-left"></div>
+          <div class="wb-side wb-right"></div>
+          <div class="wb-eyes" aria-hidden="true">
+            <span></span><span></span>
+          </div>
+          <div class="wb-grin" aria-hidden="true"></div>
+          <div class="wb-glow"></div>
+        </div>
+      </button>
+
+      <p class="welcome-hint" id="welcome-hint">▼ clique pra abrir <em>(se tiver coragem)</em> ▼</p>
+
+      <div class="welcome-floats" aria-hidden="true">
+        <span>?</span><span>?</span><span>?</span><span>🃏</span><span>?</span>
+      </div>
+    </div>
+
+    <div class="welcome-prize" id="welcome-prize" aria-hidden="true">
+      <p class="welcome-prize-eyebrow">🃏 voce ganhou 🃏</p>
+      <img class="welcome-prize-gif" id="welcome-prize-gif" src="" alt="" />
+      <p class="welcome-prize-text" id="welcome-prize-text"></p>
+      <p class="welcome-prize-fine">a caixinha continua zoando você. tem mais lá embaixo.</p>
+      <button class="welcome-enter" id="welcome-enter">▶ ENTRAR NO CAOS ◀</button>
+    </div>
+  </div>
+
   <span class="float-q">?</span>
   <span class="float-q">?</span>
   <span class="float-q">?</span>
 
   <main>
     <header class="hero-mini">
-      <p class="hero__eyebrow">★ nenhum conselho aqui é útil ★</p>
+      <p class="hero__eyebrow">★ só gifs. só caos. zero conselho útil. ★</p>
       <h1>SHACO É <span>AP</span></h1>
       <p class="hero__sub">
-        fragmentos desordenados sobre um palhaço que <em>devia estar numa caixinha</em>
+        nada de texto longo. <em>só interatividade e palhaço pulando.</em>
       </p>
       <canvas id="hero-canvas" width="340" height="340" aria-label="shaco 3D"></canvas>
       <div class="hero__cta-group">
         <a href="./game/" class="btn-demon">🎮 ache o shaco (3D)</a>
-        <button id="shuffle" class="btn-ghost">🎲 embaralhar tudo</button>
+        <button id="goto-memory" class="btn-demon">🧠 jogo da memória</button>
+        <button id="shuffle" class="btn-ghost">🎲 embaralhar</button>
         <button id="invocar" class="btn-ghost">🃏 invocar</button>
+        <button id="reopen-box" class="btn-ghost">🎁 caixinha de novo</button>
       </div>
-      <p class="hero__scroll">▼ role. alguma coisa te pega embaixo ▼</p>
+      <p class="hero__scroll">▼ role. <em>alguma coisa te pega embaixo.</em> ▼</p>
     </header>
 
     <button id="sound-toggle" class="sound-toggle" aria-label="ligar/desligar som" title="ligar som">🔇</button>
+
+    <!-- ======== MEMORY GAME ======== -->
+    <section id="memory" class="memory-section">
+      <h2 class="memory-title">🧠 jogo da memória <span>(do trauma)</span></h2>
+      <p class="memory-sub">ache os pares antes que o Shaco ache você.</p>
+      <div class="memory-stats">
+        <span>movimentos: <b id="mem-moves">0</b></span>
+        <span>pares: <b id="mem-pairs">0</b><i>/8</i></span>
+        <span>melhor: <b id="mem-best">—</b></span>
+        <button id="mem-restart" class="btn-ghost mem-restart">↻ reiniciar</button>
+      </div>
+      <div id="memory-grid" class="memory-grid" aria-label="tabuleiro do memory"></div>
+      <p id="mem-msg" class="mem-msg" aria-live="polite"></p>
+    </section>
 
     <div id="chaos" class="chaos-grid" aria-live="polite"></div>
     <p class="box-output" aria-live="polite"></p>
 
     <footer>
       <p><em>site feito de raiva e gifs roubados.</em> league of legends pertence à riot games. o trauma pertence a você.</p>
-      <p><a href="#top" onclick="window.scrollTo(0,0);return false;">voltar ao mato</a> · <a href="https://github.com/gabriel20angelo-web/shaco-ap" target="_blank" rel="noopener">código</a></p>
+      <p><a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">voltar ao mato</a> · <a href="https://github.com/gabriel20angelo-web/shaco-ap" target="_blank" rel="noopener">código</a></p>
       <p class="laugh">HA HA HA HA HA HA HA HA HA HA</p>
     </footer>
   </main>
@@ -55,45 +118,6 @@
     const A = () => window.ShacoAudio;
 
     // ============ DADOS ============
-
-    const JOKES = [
-      "shaco não é troll. shaco é <em>vocação</em>.",
-      "3 caixinhas é aviso. 4 é promessa. 5 é testamento.",
-      "warde tudo. <em>o tudo ainda não é suficiente.</em>",
-      "o clone era o original. você é a cópia.",
-      "ser main shaco é opcional. parar não é.",
-      "'queue pop.' ele já estava te esperando.",
-      "a caixinha sabe do seu mmr.",
-      "o Baiano viu.",
-      "não existe gg. existe <em>survivor's guilt</em>.",
-      "pinkward: R$200. ansiolítico: R$50. <em>pergunta.</em>",
-      "meu pai nunca me explicou essa build.",
-      "'olha atrás de você.' eu olhei. ele tava lá.",
-      "report: shaco, jg, feeding. razão: <em>nasceu</em>.",
-      "shaco + coringa: duas profissões, uma vocação.",
-      "tá com medo? <em>ainda bem.</em>",
-      "você nunca vê o primeiro q. o segundo você lembra da infância.",
-      "shaco ap é tipo coringa com mirins.",
-      "não pise no mato. <em>pise no mato.</em>",
-      "meu oftalmologista jurou que eu vi o q. mentiu.",
-      "minha ex virou main shaco. saí do relacionamento carry.",
-      "shaco tem skin halloween. é pra ele usar o ano todo.",
-      "se você clona, <em>o clone clica.</em>",
-      "'nice q' é o luto do adc.",
-      "<strong>a piada é com você.</strong>",
-      "shaco ap e ad são a mesma pessoa em terapias diferentes.",
-      "não existe shaco ruim. existe adc confiante.",
-      "o clone mijou de rir. literalmente.",
-      "ward no drake? placebo.",
-      "você abriu uma caixinha. agora tem duas.",
-      "jogar shaco é aceitar. viver contra é <em>aprender</em>.",
-      "ninguém jogou shaco ap e continuou a mesma pessoa.",
-      "'só mais um pouquinho…' ele diz, enquanto você some.",
-      "a lore diz que o shaco é amaldiçoado. <em>amaldiçoados NÓS.</em>",
-      "o baron é um ponto de encontro. o shaco marcou.",
-      "faz shaco ap. quem faz shaco ap não perde. <em>só desiste.</em>",
-      "sua mãe te avisou. era o shaco o tempo todo."
-    ];
 
     const BOXES = [
       { prize: "🎁 +1500 dano psicológico. é de graça." },
@@ -146,29 +170,16 @@
       { src: "https://media.tenor.com/Hq7KtCAo7i0AAAAM/lolgel.gif", caption: "contemplando crime" }
     ];
 
-    const QUOTES = [
-      { text: "joguei 200 partidas. minha esposa foi embora. liquido positivo.", cite: "rodrigo, 34" },
-      { text: "perdi 12kg de suor ouvindo HAHAHA no ward.", cite: "adc anônimo" },
-      { text: "meu psiquiatra aumentou o ritalin.", cite: "sessão nº14" },
-      { text: "ele clonou. mijou de rir. eu desinstalei.", cite: "fórum br, 2019" },
-      { text: "minha ex me deixou quando descobriu minha build.", cite: "main desde season 4" },
-      { text: "toda vez que o shaco ri eu lembro do meu pai.", cite: "confissão anônima" },
-      { text: "o pinkward era placebo. eu sempre soube.", cite: "invocador arrependido" },
-      { text: "não existe cura. só /mute all.", cite: "r/shacomains, adaptado" },
-      { text: "'que tal um truque de mágica?' ele disse. eu aceitei. morri.", cite: "último log do adc" }
-    ];
-
-    const STATS = [
-      { value: "97%", label: "dos shacos inimigos são challenger disfarçado" },
-      { value: "0.3s", label: "entre ver o Q e virar screenshot" },
-      { value: "∞", label: "wards necessárias. ainda em pesquisa." },
-      { value: "14", label: "idade média do main shaco do seu time" },
-      { value: "1", label: "velinha acesa pra Riot nerfar o E" },
-      { value: "47", label: "caixinhas por partida, em média" },
-      { value: "200", label: "partidas por divórcio (±3)" },
-      { value: "12kg", label: "suor médio por ranqueada" },
-      { value: "-500", label: "anos de paz interior" },
-      { value: "3%", label: "do seu time está realmente online" }
+    // 8 gifs distintos pro memory (selecionados pelas thumbs ficarem mais reconhecíveis)
+    const MEMORY_GIFS = [
+      { src: "https://media.tenor.com/X95_fOkzFOIAAAAM/shaco-honsementioned.gif", id: 'jump' },
+      { src: "https://media.tenor.com/BT1t3WFaDSsAAAAM/i-jest-shaco.gif", id: 'jest' },
+      { src: "https://media.tenor.com/yeR2U7TIIvMAAAAM/shaco-q-league-of-legends.gif", id: 'q' },
+      { src: "https://media.tenor.com/iwJuc1p4kl0AAAAM/shaco.gif", id: 'kanzi' },
+      { src: "https://media.tenor.com/5nhWcbcHb88AAAAM/shaco-paco-lol.gif", id: 'paco' },
+      { src: "https://media.tenor.com/jb3P5ykckQoAAAAM/shaco-league-of-legends.gif", id: 'dead' },
+      { src: "https://media.tenor.com/m0-ZQAVlx18AAAAM/shaco-robator.gif", id: 'robator' },
+      { src: "https://media.tenor.com/Hq7KtCAo7i0AAAAM/lolgel.gif", id: 'gel' }
     ];
 
     const SPELLS = [
@@ -228,6 +239,22 @@
       { nick: 'EuMesmo', rank: 'BRONZE III', lp: 47, winrate: '48%', games: 88 }
     ];
 
+    // Prêmios para a caixinha de boas-vindas
+    const WELCOME_PRIZES = [
+      "🎁 +1 trauma vitalício. parabéns.",
+      "🃏 contrato assinado: você é main shaco agora.",
+      "💀 você abriu. ele anotou.",
+      "🎭 prêmio: você. ele já tinha.",
+      "👀 viu? eu já tinha avisado.",
+      "🔔 sua paz interior expirou. boa sorte.",
+      "📦 era mimic. tarde demais.",
+      "🗡 backstab grátis. cortesia da casa.",
+      "🎲 rolou 1. seu dia inteiro virou crítico negativo.",
+      "🪦 RIP sua produtividade. foi rápido.",
+      "🃏 a piada é com você. de novo.",
+      "🎂 hoje é dia de aniversário do palhaço. ele lembra do seu também."
+    ];
+
     // ============ BUILD CHAOS GRID ============
 
     function shuffle(arr) {
@@ -249,11 +276,10 @@
 
     function buildItems() {
       const items = [];
-      JOKES.forEach(j => items.push({ type: 'joke', data: j }));
       BOXES.forEach(b => items.push({ type: 'box', data: b }));
       GIFS.forEach(g => items.push({ type: 'gif', data: g }));
-      QUOTES.forEach(q => items.push({ type: 'quote', data: q }));
-      STATS.forEach(s => items.push({ type: 'stat', data: s }));
+      // duplica metade dos gifs aleatoriamente pra ter mais densidade visual
+      shuffle([...GIFS]).slice(0, 10).forEach(g => items.push({ type: 'gif', data: g }));
       SPELLS.forEach(s => items.push({ type: 'spell', data: s }));
       items.push({ type: 'carta' });
       items.push({ type: 'slot' });
@@ -273,12 +299,6 @@
     function renderItem(item) {
       let c;
       switch (item.type) {
-        case 'joke': {
-          const s = rand(['xs', 's', 's', 'm']);
-          c = mkCard('joke', s);
-          c.innerHTML = `<p>${item.data}</p>`;
-          return c;
-        }
         case 'box': {
           c = mkCard('box', 'xs');
           const btn = document.createElement('button');
@@ -293,16 +313,6 @@
           const s = rand(['s', 's', 'm']);
           c = mkCard('gif', s);
           c.innerHTML = `<img src="${item.data.src}" alt="${item.data.caption}" loading="lazy"><figcaption>${item.data.caption}</figcaption>`;
-          return c;
-        }
-        case 'quote': {
-          c = mkCard('quote', 'm');
-          c.innerHTML = `<p>“${item.data.text}”</p><cite>— ${item.data.cite}</cite>`;
-          return c;
-        }
-        case 'stat': {
-          c = mkCard('stat', 'xs');
-          c.innerHTML = `<div class="stat-value">${item.data.value}</div><div class="stat-label">${item.data.label}</div>`;
           return c;
         }
         case 'spell': {
@@ -383,7 +393,6 @@
         if (el) frag.appendChild(el);
       });
       grid.appendChild(frag);
-      attachInteractions();
     }
 
     // ============ INTERATIVIDADE ============
@@ -519,12 +528,254 @@
       }
     }
 
-    // Click delegate — 1 listener pro grid inteiro
-    function attachInteractions() {
-      // nada por item — tudo via delegate no document
+    // ============ MEMORY GAME ============
+
+    const MEM_BEST_KEY = 'shaco-memory-best';
+    let memState = {
+      flipped: [],   // ids dos cards flippados aguardando match
+      matched: 0,
+      moves: 0,
+      lock: false,
+      cards: []
+    };
+
+    function buildMemoryDeck() {
+      const deck = [];
+      MEMORY_GIFS.forEach(g => {
+        deck.push({ ...g, key: g.id + '-a' });
+        deck.push({ ...g, key: g.id + '-b' });
+      });
+      return shuffle(deck);
     }
 
+    function renderMemory() {
+      const grid = document.getElementById('memory-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      memState = { flipped: [], matched: 0, moves: 0, lock: false, cards: buildMemoryDeck() };
+      memState.cards.forEach((card, idx) => {
+        const cell = document.createElement('button');
+        cell.className = 'mem-card';
+        cell.dataset.idx = idx;
+        cell.dataset.id = card.id;
+        cell.setAttribute('aria-label', 'carta ' + (idx + 1));
+        cell.innerHTML = `
+          <div class="mem-inner">
+            <div class="mem-front">
+              <span class="mem-back-mark">🃏</span>
+            </div>
+            <div class="mem-back">
+              <img src="${card.src}" alt="" loading="lazy" />
+            </div>
+          </div>`;
+        grid.appendChild(cell);
+      });
+      updateMemHud();
+      const msg = document.getElementById('mem-msg');
+      if (msg) { msg.textContent = ''; msg.className = 'mem-msg'; }
+    }
+
+    function updateMemHud() {
+      const m = document.getElementById('mem-moves');
+      const p = document.getElementById('mem-pairs');
+      const b = document.getElementById('mem-best');
+      if (m) m.textContent = memState.moves;
+      if (p) p.textContent = memState.matched;
+      const best = localStorage.getItem(MEM_BEST_KEY);
+      if (b) b.textContent = best ? best : '—';
+    }
+
+    function flipMemCard(cell) {
+      if (memState.lock) return;
+      if (cell.classList.contains('flipped') || cell.classList.contains('matched')) return;
+      cell.classList.add('flipped');
+      A()?.card();
+      memState.flipped.push(cell);
+
+      if (memState.flipped.length === 2) {
+        memState.moves++;
+        updateMemHud();
+        const [a, b] = memState.flipped;
+        if (a.dataset.id === b.dataset.id) {
+          a.classList.add('matched');
+          b.classList.add('matched');
+          memState.matched++;
+          memState.flipped = [];
+          A()?.crit();
+          flashMemMsg(rand([
+            '✨ par! a piada continua.',
+            '🃏 acerto. ele já sabia.',
+            '👁 +1 par. ele tá te observando.',
+            '✅ certinho. coincidência?',
+            '💚 par perfeito. assustador.'
+          ]), 'good');
+          updateMemHud();
+          if (memState.matched === MEMORY_GIFS.length) winMemory();
+        } else {
+          memState.lock = true;
+          A()?.miss();
+          flashMemMsg(rand([
+            '🤡 errou. previsível.',
+            '💀 não. de novo não.',
+            '👀 ele riu. dá pra ouvir?',
+            '🃏 erro registrado.',
+            '⚠ misclick clássico.'
+          ]), 'bad');
+          setTimeout(() => {
+            a.classList.remove('flipped');
+            b.classList.remove('flipped');
+            memState.flipped = [];
+            memState.lock = false;
+          }, 900);
+        }
+      }
+    }
+
+    function flashMemMsg(text, kind) {
+      const msg = document.getElementById('mem-msg');
+      if (!msg) return;
+      msg.textContent = text;
+      msg.className = 'mem-msg show ' + (kind || '');
+    }
+
+    function winMemory() {
+      const moves = memState.moves;
+      const best = parseInt(localStorage.getItem(MEM_BEST_KEY) || '999', 10);
+      let newBest = false;
+      if (moves < best) {
+        localStorage.setItem(MEM_BEST_KEY, String(moves));
+        newBest = true;
+      }
+      updateMemHud();
+      const verdict =
+        moves <= 10 ? '🧠 sobrenatural. ele desconfiou.' :
+        moves <= 14 ? '👑 dignidade preservada. raro.' :
+        moves <= 20 ? '🃏 mediano. nem ele riu.' :
+        moves <= 30 ? '💀 isso doeu na alma.' :
+                       '🤡 ele já foi embora. tem dó.';
+      flashMemMsg(`🎉 PARES TODOS! ${moves} movimentos. ${verdict}${newBest ? ' (recorde novo)' : ''}`, 'win');
+      A()?.laugh();
+      setTimeout(() => A()?.laugh(), 700);
+      // chuva de risadas em cima do tabuleiro
+      rainHA(30, 70);
+      window.HeroShaco?.spawnClones(3);
+    }
+
+    // ============ WELCOME BOX ============
+
+    let welcomeOpened = false;
+
+    function openWelcomeBox() {
+      if (welcomeOpened) return;
+      welcomeOpened = true;
+      const stage = document.getElementById('welcome-stage');
+      const prize = document.getElementById('welcome-prize');
+      const box = document.getElementById('welcome-box');
+      const hint = document.getElementById('welcome-hint');
+      if (!stage || !prize || !box) return;
+
+      A()?.boxOpen();
+      box.classList.add('opening');
+      if (hint) hint.style.opacity = '0';
+      // Confete + chuva
+      welcomeConfetti(60);
+      setTimeout(() => { A()?.laugh(); }, 250);
+      setTimeout(() => { A()?.explode(); }, 600);
+
+      setTimeout(() => {
+        // Esconde o stage, revela o prêmio
+        stage.classList.add('exit');
+        const gif = rand(GIFS);
+        const text = rand(WELCOME_PRIZES);
+        const gifEl = document.getElementById('welcome-prize-gif');
+        const textEl = document.getElementById('welcome-prize-text');
+        if (gifEl) { gifEl.src = gif.src; gifEl.alt = gif.caption; }
+        if (textEl) textEl.textContent = text;
+        prize.classList.add('show');
+        prize.setAttribute('aria-hidden', 'false');
+      }, 900);
+    }
+
+    function welcomeConfetti(count) {
+      const wm = document.getElementById('welcome');
+      if (!wm) return;
+      const emojis = ['🃏', '🎁', '?', 'HA', '🗡', '💀', '🎀', '⚠', '👁'];
+      const colors = ['#39ff14', '#a020f0', '#caff00', '#fff'];
+      for (let i = 0; i < count; i++) {
+        const span = document.createElement('span');
+        span.className = 'welcome-confetti';
+        span.textContent = rand(emojis);
+        span.style.left = (50 + (Math.random() - 0.5) * 12) + '%';
+        span.style.top = '50%';
+        span.style.color = rand(colors);
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 200 + Math.random() * 600;
+        span.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+        span.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+        span.style.setProperty('--rot', (Math.random() * 720 - 360) + 'deg');
+        span.style.fontSize = (0.9 + Math.random() * 1.6) + 'rem';
+        span.style.animationDuration = (1.4 + Math.random() * 1.2) + 's';
+        wm.appendChild(span);
+        setTimeout(() => span.remove(), 2700);
+      }
+    }
+
+    function closeWelcome() {
+      const wm = document.getElementById('welcome');
+      if (!wm) return;
+      wm.classList.add('closing');
+      setTimeout(() => {
+        wm.style.display = 'none';
+        wm.setAttribute('aria-hidden', 'true');
+      }, 600);
+    }
+
+    function reopenWelcome() {
+      const wm = document.getElementById('welcome');
+      const stage = document.getElementById('welcome-stage');
+      const prize = document.getElementById('welcome-prize');
+      const box = document.getElementById('welcome-box');
+      const hint = document.getElementById('welcome-hint');
+      if (!wm || !stage || !prize || !box) return;
+      welcomeOpened = false;
+      wm.style.display = '';
+      wm.classList.remove('closing');
+      wm.setAttribute('aria-hidden', 'false');
+      stage.classList.remove('exit');
+      prize.classList.remove('show');
+      prize.setAttribute('aria-hidden', 'true');
+      box.classList.remove('opening', 'impatient');
+      if (hint) hint.style.opacity = '';
+      // Limpa confetes residuais
+      wm.querySelectorAll('.welcome-confetti').forEach(c => c.remove());
+      // Re-arma o impatient após 3.5s
+      setTimeout(() => {
+        const b = document.getElementById('welcome-box');
+        if (b && !welcomeOpened) b.classList.add('impatient');
+      }, 3500);
+    }
+
+    // ============ EVENT DELEGATION ============
+
     document.addEventListener('click', (e) => {
+      // Welcome modal first
+      if (e.target.closest('#welcome-box')) { openWelcomeBox(); return; }
+      if (e.target.closest('#welcome-enter') || e.target.closest('#welcome-skip')) {
+        closeWelcome();
+        return;
+      }
+      if (e.target.closest('#reopen-box')) { reopenWelcome(); return; }
+
+      // Memory game
+      const memCell = e.target.closest('.mem-card');
+      if (memCell) { flipMemCard(memCell); return; }
+      if (e.target.closest('#mem-restart')) { renderMemory(); A()?.card(); return; }
+      if (e.target.closest('#goto-memory')) {
+        document.getElementById('memory')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+
+      // Box (caixinhas do grid)
       const box = e.target.closest('.box');
       if (box) { openBox(box); return; }
 
@@ -537,7 +788,7 @@
       if (e.target.closest('#shuffle')) {
         A()?.card();
         renderChaos();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.getElementById('chaos')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         return;
       }
       if (e.target.closest('#invocar')) {
@@ -570,8 +821,9 @@
         return;
       }
 
-      // fallback: HA flutuante pra qualquer outro clique
-      const ignores = ['a', 'summary', 'details', 'button', 'input'];
+      // fallback: HA flutuante pra qualquer outro clique (mas não dentro do welcome)
+      if (e.target.closest('#welcome')) return;
+      const ignores = ['a', 'summary', 'details', 'button', 'input', '.mem-card'];
       if (ignores.some(t => e.target.closest(t))) return;
       const msgs = ['HA!', 'HAHA!', 'olha atrás', 'a piada é com você', 'truque!', '?', 'te peguei'];
       const t = document.createElement('span');
@@ -650,10 +902,17 @@
       document.body.appendChild(s);
       setTimeout(() => { if (s.parentNode) s.remove(); }, 6000);
     }
-    setTimeout(() => { popSurprise(); setInterval(popSurprise, 35000); }, 10000);
+    setTimeout(() => { popSurprise(); setInterval(popSurprise, 35000); }, 25000);
+
+    // Caixinha começa tremendo um pouco mais forte depois de 3s sem clicar
+    setTimeout(() => {
+      const box = document.getElementById('welcome-box');
+      if (box && !welcomeOpened) box.classList.add('impatient');
+    }, 3500);
 
     // Bootstrap
     renderChaos();
+    renderMemory();
   </script>
 </body>
 </html>
