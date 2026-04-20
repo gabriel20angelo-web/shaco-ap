@@ -65,6 +65,21 @@
 
   <main>
     <header class="hero-mini">
+      <button id="goto-tigrinho" class="hero-tigrinho-btn" aria-label="ir pro tigrinho do shaco">
+        <span class="htb-ring">
+          <img src="https://media.tenor.com/NBLyuTxv0A0AAAAM/shaco-bong.gif" alt="" loading="lazy" />
+        </span>
+        <span class="htb-label">🐯 tigrinho do shaco</span>
+        <span class="htb-sub">▼ clique pra girar ▼</span>
+      </button>
+
+      <div class="hero__spells" role="group" aria-label="feitiços do shaco">
+        <button class="btn-spell hero-spell" data-spell="deceive"><span class="key">Q</span><span>Deceive</span><small>some 2s</small></button>
+        <button class="btn-spell hero-spell" data-spell="jest"><span class="key">W</span><span>JEST!</span><small>chuva de HA</small></button>
+        <button class="btn-spell hero-spell" data-spell="backstab"><span class="key">E</span><span>Backstab</span><small>gira tudo</small></button>
+        <button class="btn-spell hero-spell" data-spell="hallucinate"><span class="key">R</span><span>Hallucinate</span><small>clones</small></button>
+      </div>
+
       <p class="hero__eyebrow">★ só gifs. só caos. zero conselho útil. ★</p>
       <h1>SHACO É <span>AP</span></h1>
       <p class="hero__sub">
@@ -807,6 +822,11 @@
       if (e.target.closest('#mem-restart')) { renderMemory(); A()?.card(); return; }
       if (e.target.closest('#goto-memory')) {
         document.getElementById('memory')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+      if (e.target.closest('#goto-tigrinho')) {
+        A()?.card?.();
+        document.getElementById('tigrinho')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         return;
       }
 
